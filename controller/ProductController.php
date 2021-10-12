@@ -21,6 +21,13 @@ class ProductController{
         $this->view->renderProducts($products, false);
     }
 
+    function showProduct($id_product){
+        $product = $this->model->getProduct($id_product);
+        $this->view->renderProduct($product);
+    }
+
+
+    //METODOS COMO ADMIN
     function showProductsAdmin($id_category = null){
         //CHEQUEAR LOGUEO COMO ADMIN
         if ($id_category == null){
@@ -31,12 +38,17 @@ class ProductController{
         $this->view->renderProducts($products,true);
     }
 
-    function showProduct($id_product){
-        $product = $this->model->getProduct($id_product);
-        $this->view->renderProduct($product);
+    function addProduct($nombre, $descripcion, $contenido, $categoria){
+        $this->model->addProductToDB($nombre, $descripcion, $contenido, $categoria);
+        $this->showProductsAdmin();
     }
 
     function deleteProduct($id_producto){
-        $this->model->deleteProduct($id_producto);
+        $this->model->deleteProductFromDB($id_producto);
     }
+
+    function updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto){
+        $this->model->updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto);
+    }
+
 }

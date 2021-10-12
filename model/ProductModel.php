@@ -1,5 +1,11 @@
 <?php
 
+ini_set('display_errors', 1);
+
+ini_set('display_startup_errors', 1);
+
+error_reporting(E_ALL);
+
 class ProductModel{
 
     private function connectToDB(){
@@ -37,10 +43,21 @@ class ProductModel{
         return $products;
     }
 
-    function deleteProduct($id_producto){
+    function addProductToDB($nombre, $descripcion, $contenido, $categoria){
         $db = $this->connectToDB();
-        $sentence = $db->prepare(
-            "DELETE FROM `productos` WHERE id_producto=?");
+        $sentence = $db->prepare("INSERT INTO productos(nombre, descripcion, contenido, id_categoria) VALUES(?,?,?,?)");
+        $sentence->execute(array($nombre, $descripcion, $contenido, $categoria));
+    }
+
+    function updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto){
+        $db = $this->connectToDB();
+        $sentence = $db->prepare("UPDATE productos SET nombre=?, descripcion=?, contenido=?, id_categoria=? WHERE id_producto=?");
+        $sentence->execute(array($nombre, $descripcion, $contenido, $categoria, $id_producto));
+    }
+
+    function deleteProductFromDB($id_producto){
+        $db = $this->connectToDB();
+        $sentence = $db->prepare("DELETE FROM `productos` WHERE id_producto=?");
         $sentence->execute(array($id_producto));
     }
 }

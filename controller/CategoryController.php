@@ -23,7 +23,7 @@ class CategoryController{
                         <th></th>
                     </tr>
                 </thead><tbody>';
-        $categories = getCategories();
+        //$categories = getCategories();
         foreach ($categories as $category) {
             $html .=
                 '<tr><td>'.$category->nombre.'</td>

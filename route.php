@@ -29,7 +29,7 @@ switch ($params[0]) {
         break;
 
     case 'categories':
-        showCategories();
+        //showCategories();
         break;
 
     case 'category':
@@ -42,13 +42,21 @@ switch ($params[0]) {
             case 'products':
                 showProductsAdmin();
             break;
-    
+
             case 'category':
                 //$productController->showProductsAdmin();
             break;
-    
+
             case 'deleteProduct':
                 deleteProduct($params[2]);
+            break;
+
+            case 'addProduct':
+                addProduct($params[2], $params[3], $params[4], $params[5]);
+            break;
+
+            case 'updateProduct':
+                updateProduct($params[2], $params[3], $params[4], $params[5], $params[6]);
             break;
         }
         break;

@@ -1,4 +1,11 @@
 <?php
+
+ini_set('display_errors', 1);
+
+ini_set('display_startup_errors', 1);
+
+error_reporting(E_ALL);
+
 require_once "controller/ProductController.php";
 
 function showHome(){
@@ -25,10 +32,20 @@ function deleteProduct($id){
     $productController->deleteProduct($id);
 }
 
+function showCategories($id){
+}
 
+function addProduct($nombre, $descripcion, $contenido, $categoria){
+    $productController = new ProductController();
+    $productController->addProduct($nombre, $descripcion, $contenido, $categoria);
+}
+
+function updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto){
+    $productController = new ProductController();
+    $productController->updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto);
+}
 
 /*
-
 function showCategories(){
     include_once 'templates/header.php';
     $html =
