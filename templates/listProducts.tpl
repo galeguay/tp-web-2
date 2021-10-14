@@ -1,19 +1,21 @@
 {include file="header.tpl"}
 <div class="centrado">
     <h1>Tabla de productos</h1>
-<div>
-    <form id="formProduct" action="addProduct" method="POST">
-        <input name="nombre" placeholder="Nombre">
-        <input name="descripcion" placeholder="Descripción">
-        <input type="number" name="contenido" placeholder="Contenido Neto (ml)">
-        <select name="id_categoria">
-            {foreach from=$categories item=$category}
-                <option value="{$category->id_categoria}">{$category->nombre}</option>
-            {/foreach}
-        </select>
-        <input type="submit" value="Agregar">
-    </form>
-</div>
+    {if $isAdmin}
+        <div>
+            <form id="formProduct" action="addProduct" method="POST">
+                <input name="nombre" placeholder="Nombre">
+                <input name="descripcion" placeholder="Descripción">
+                <input type="number" name="contenido" placeholder="Contenido Neto (ml)">
+                <select name="id_categoria">
+                    {foreach from=$categories item=$category}
+                        <option value="{$category->id_categoria}">{$category->nombre}</option>
+                    {/foreach}
+                </select>
+                <input type="submit" value="Agregar">
+            </form>
+        </div>
+    {/if}
     <table>
         <thead>
             <tr>
@@ -39,10 +41,5 @@
             {/foreach}
         </tbody>
     </table>
-            {if $isAdmin}
-                
-            {/if}
-            
-    <script type="text/javascript" src="../js/products.js"></script>
 </div>
 {include file="footer.tpl"}

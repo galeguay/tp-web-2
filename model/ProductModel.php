@@ -49,10 +49,10 @@ class ProductModel{
         $sentence->execute(array($nombre, $descripcion, $contenido, $categoria));
     }
 
-    function updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto){
+    function updateProduct($nombre, $descripcion, $contenido, $id_categoria, $id_producto){
         $db = $this->connectToDB();
         $sentence = $db->prepare("UPDATE productos SET nombre=?, descripcion=?, contenido=?, id_categoria=? WHERE id_producto=?");
-        $sentence->execute(array($nombre, $descripcion, $contenido, $categoria, $id_producto));
+        $sentence->execute(array($nombre, $descripcion, $contenido, $id_categoria, $id_producto));
     }
 
     function deleteProductFromDB($id_producto){

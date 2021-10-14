@@ -1,6 +1,13 @@
-{include file="templates/header.php"}
+{include file="header.tpl"}
 <div class="centrado">
     <h1>Tabla de Categorías</h1>
+    {if $isAdmin}
+        <h3>Agregar categoria:</h3>
+        <form id="form-categoria" method="GET">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <input type="submit" id="btnAgregar" value="Agregar">
+        </form>
+    {/if}
     <table>
         <thead>
             <tr>
@@ -9,15 +16,15 @@
             </tr>
         </thead>
         <tbody>
-            {foreach from=categories item=$category}
+            {foreach from=$categories item=$category}
                 <tr>
                     <td>{$category->nombre}</td>
                     <td><a href ="admin/category{$category->id_categoria}">VER PRODUCTOS</a>
                     {if $isAdmin}
-                    <td>
-                        <a class="btnEditar" data-id="{$product->id_producto}">EDITAR</a>
-                        <a class="btnBorrar" data-id="{$product->id_producto}">BORRAR</a></td>
-                    <td>
+                        <td>
+                            <a href="editCategory/{$category->id_categoria}" class="btnEditar">EDITAR</a>
+                            <a href="editCategory/{$category->id_categoria}" class="btnBorrar">BORRAR</a></td>
+                        <td>
                     {else}
                         </td>
                     {/if}
@@ -26,5 +33,4 @@
         </tbody>
     </table>
 </div>
-<script type="text/javascript" src="js/categories.js"></script>
-{include file="templates/footer.tpl"}
+{include file="footer.tpl"}

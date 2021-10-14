@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 <div>
-    <form id="formProduct" action="updateProduct/{$product->id_producto}" method="POST">
+    <form action="updateProduct/{$product->id_producto}" method="POST">
         <input name="nombre" placeholder="Nombre" value="{$product->nombre}">
         <input name="descripcion" placeholder="Descripción" value="{$product->descripcion}">
         <input type="number" name="contenido" placeholder="Contenido Neto (ml)" value="{$product->contenido}">
