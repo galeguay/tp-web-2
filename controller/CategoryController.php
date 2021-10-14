@@ -12,28 +12,17 @@ class CategoryController{
     }
 
     function showCategories(){
-        include_once 'templates/header.php';
-        $html =
-            '<div class="centrado">
-            <h1>Tabla de Categorías</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>NOMBRE</th>
-                        <th></th>
-                    </tr>
-                </thead><tbody>';
-        //$categories = getCategories();
-        foreach ($categories as $category) {
-            $html .=
-                '<tr><td>'.$category->nombre.'</td>
-                <td><a href ="category/'.$category->id_categoria.'">VER PRODUCTOS</a></td>
-                </tr>';
-        }
-        $html .= '</tbody></thead></table></div>';
-        echo $html;
-        echo '<script type="text/javascript" src="js/pago.js"></script>';
-        include_once 'templates/footer.php';
+        $categories = $this->model->getCategories();
+        $this->view->renderCategories($categories, false);
     }
 
+    function showCategoriesAsAdmin(){
+        $categories = $this->model->getCategories();
+        $this->view->renderCategories($categories, true);
+    }
+
+    function getCategories(){
+        $categories = $this->model->getCategories();
+        return $categories;
+    }
 }

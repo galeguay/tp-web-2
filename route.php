@@ -1,10 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-
-ini_set('display_startup_errors', 1);
-
-error_reporting(E_ALL);
-
 require_once "actions.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -43,23 +37,34 @@ switch ($params[0]) {
                 showProductsAdmin();
             break;
 
-            case 'category':
-                //$productController->showProductsAdmin();
+            case 'categories':
+                showCategories();
             break;
 
-            case 'deleteProduct':
-                deleteProduct($params[2]);
-            break;
 
-            case 'addProduct':
-                addProduct($params[2], $params[3], $params[4], $params[5]);
-            break;
 
-            case 'updateProduct':
-                updateProduct($params[2], $params[3], $params[4], $params[5], $params[6]);
-            break;
         }
         break;
+
+    //AGREGA EL PRODUCTO A LA BD
+    case 'addProduct':
+        addProduct();
+    break;
+
+    //ELIMINA EL PRODUCTO DE LA BD
+    case 'deleteProduct':
+        deleteProduct($params[1]);
+    break;
+
+    //CARGA EL HTML PARA EDITAR EL PRODUCTO SELECCIONADO
+    case 'editProduct':
+        editProduct($params[1]);
+    break;
+
+    //ACTUALIZA LOS CAMPOS DEL PRODUCTO EN LA BD
+    case 'updateProduct':
+        updateProduct($params[1]);
+    break;
 
     echo "404 page not found";
     break;

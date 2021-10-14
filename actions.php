@@ -1,20 +1,15 @@
 <?php
-
-ini_set('display_errors', 1);
-
-ini_set('display_startup_errors', 1);
-
-error_reporting(E_ALL);
-
 require_once "controller/ProductController.php";
 
 function showHome(){
-    
+                    //FALTA EL HOME                   
 }
 
 function showProducts(){
+    $categoriesController = new CategoryController();
+    $categories = $categoriesController->getCategories();
     $productController = new ProductController();
-    $productController->showProducts();
+    $productController->showProducts($categories);
 }
 
 function showProduct($id_product){
@@ -23,50 +18,42 @@ function showProduct($id_product){
 }
 
 function showProductsAdmin(){
+    $categoriesController = new CategoryController();
+    $categories = $categoriesController->getCategories();
     $productController = new ProductController();
-    $productController->showProductsAdmin();
+    $productController->showProductsAdmin($categories);
+}
+
+function showCategories(){
+    $categoryController = new CategoryController();
+    $categoryController->showCategories();
+}
+
+function addProduct(){
+    if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
+        $productController = new ProductController();
+        $productController->addProduct($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria']);
+        header("Location: ".BASE_URL."admin/products");
+    }
 }
 
 function deleteProduct($id){
     $productController = new ProductController();
     $productController->deleteProduct($id);
+    header("Location: ".BASE_URL."admin/products");
 }
 
-function showCategories($id){
-}
-
-function addProduct($nombre, $descripcion, $contenido, $categoria){
+function editProduct($id){
+    $categoriesController = new CategoryController();
+    $categories = $categoriesController->getCategories();
     $productController = new ProductController();
-    $productController->addProduct($nombre, $descripcion, $contenido, $categoria);
+    $productController->showEditProduct($id, $categories);
 }
 
-function updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto){
-    $productController = new ProductController();
-    $productController->updateProduct($nombre, $descripcion, $contenido, $categoria, $id_producto);
-}
-
-/*
-function showCategories(){
-    include_once 'templates/header.php';
-    $html =
-        '<div class="centrado">
-        <h1>Tabla de Categorías</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>NOMBRE</th>
-                    <th></th>
-                </tr>
-            </thead><tbody>';
-    $categories = getCategories();
-    foreach ($categories as $category) {
-        $html .=
-            '<tr><td>'.$category->nombre.'</td>
-            <td><a href ="category/'.$category->id_categoria.'">VER PRODUCTOS</a></td>
-            </tr>';
+function updateProduct($id_producto){
+    if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
+        $productController = new ProductController();
+        $productController->updateProduct($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria'], $id_producto);
+        header("Location: ".BASE_URL."admin/products");
     }
-    $html .= '</tbody></thead></table></div>';
-    echo $html;
-    echo '<script type="text/javascript" src="js/pago.js"></script>';
-    include_once 'templates/footer.php';
-}*/
+}
