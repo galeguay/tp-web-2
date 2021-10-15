@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="spaced">
             <div>
                 <a href="categories">Categorias</a>
                 <a href="products">Productos</a>
@@ -19,9 +19,12 @@
                 <a href="adminProducts">Productos (ADMIN)</a>
             </div>
             <div>
-                <a href="logOut">Cerrar Sesión</a>
                 <a href="logIn">Iniciar Sesión</a>
                 <a href="register">Registrarse</a>
             </div>
-        <nav>
-    <header>
+            <div>
+            <a href="logOut">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+    <div class="centrado">

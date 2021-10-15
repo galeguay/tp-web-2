@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<h1>Iniciar Sesión</h1>
 <form action="verifyLogIn" method="POST">
     <input type="email" name="email" placeholder="Email">
     <input type="password" name="pass" placeholder="Contraseña">

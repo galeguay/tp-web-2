@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<h1>Registrar Usuario</h1>
 <form action="addUser" method="POST">
     <input type="text" name="nombre" placeholder="Usuario">
     <input type="email" name="email" placeholder="Email">
