@@ -1,3 +1,76 @@
+body{
+    font-family: 'Staatliches', cursiva;
+    font-size: larger;
+}
+
+h1 {
+    font-size: 40px;
+    color: #685866;
+}
+
+th {
+    background-color: grey;
+    color: white;
+    }
+
+table, td, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+
+table{
+    width: 70%;
+    }
+
+.tablas {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btnBorrar, .btnEditar, .btnAgregar {
+  color: white;
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+}
+.btnBorrar {
+    background-color: red;
+}
+.btnEditar {
+    background-color: orangered;
+}
+.btnAgregar {
+    background-color: green;
+}
+.btnVer {
+    color: blue;
+}
+
+
+a{
+
+    text-decoration: none;
+    font-family: 'Staatliches', cursiva;
+}
+
+nav div{
+    display: flex;
+    justify-content: space-around;
+}
+
 .centrado{
     display: flex;
     flex-direction: column;

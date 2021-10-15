@@ -26,7 +26,7 @@ class ProductController{
         $this->view->renderProducts($products, true, $categories);
     }
 
-    function showProductsByCategory($categories, $id_category){
+    function showProductsByCategory($id_category, $categories){
         $products = $this->model->getProductsCategory($id_category);
         $this->view->renderProducts($products, false, $categories);
     }

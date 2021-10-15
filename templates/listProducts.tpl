@@ -3,7 +3,7 @@
     <h1>Tabla de productos</h1>
     {if $isAdmin}
         <div>
-            <form id="formProduct" action="addProduct" method="POST">
+            <form action="addProduct" method="POST">
                 <input name="nombre" placeholder="Nombre">
                 <input name="descripcion" placeholder="Descripción">
                 <input type="number" name="contenido" placeholder="Contenido Neto (ml)">
@@ -31,9 +31,9 @@
                     <td> {$product->nombre} </td>
                     <td> {$product->contenido} ml. </td>
                     <td> {$product->categoria} </td>
-                    <td><a href ="product/{$product->id_producto}">VER DETALLE</a>
+                    <td><a href ="product/{$product->id_producto}" class="btnVer">VER DETALLE</a>
                 {if $isAdmin}
-                    <a href="editProduct/{$product->id_producto}"" class="btnEditar">EDITAR</a>
+                    <a href="editProduct/{$product->id_producto}" class="btnEditar">EDITAR</a>
                     <a href="deleteProduct/{$product->id_producto}" class="btnBorrar">BORRAR</a></td></tr>
                 {else}
                     </td></tr>

@@ -9,7 +9,7 @@ class ProductView{
     }
 
     //RENDERIZA PAGINA DE LISTA DE PRODUCTOS
-    function renderProducts($products, $isAdmin, $categories){
+    function renderProducts($products, $isAdmin, $categories = null){
         $this->smarty->assign('products', $products);
         $this->smarty->assign('isAdmin', $isAdmin);
         $this->smarty->assign('categories', $categories);

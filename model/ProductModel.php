@@ -37,7 +37,11 @@ class ProductModel{
 
     function getProductsCategory($id_category){
         $db = $this->connectToDB();
-        $sentence = $db->prepare("SELECT * FROM productos WHERE id_categoria=?");
+        $sentence = $db->prepare(
+            "SELECT productos.*, categorias.nombre AS categoria
+            FROM productos
+            JOIN categorias ON productos.id_categoria = categorias.id_categoria
+            WHERE categorias.id_categoria=?");
         $sentence->execute(array($id_category));
         $products = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $products;

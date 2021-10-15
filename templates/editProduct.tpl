@@ -6,7 +6,11 @@
         <input type="number" name="contenido" placeholder="Contenido Neto (ml)" value="{$product->contenido}">
         <select name="id_categoria">
             {foreach from=$categories item=$category}
-                <option value="{$category->id_categoria}">{$category->nombre}</option>
+                {if $category->id_categoria == $product->id_categoria}
+                    <option value="{$category->id_categoria}" selected>{$category->nombre}</option>
+                {else}
+                    <option value="{$category->id_categoria}">{$category->nombre}</option>
+                {/if}
             {/foreach}
         </select>
         <input type="submit" value="Guardar">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-14 09:59:55
+/* Smarty version 3.1.39, created on 2021-10-14 19:22:55
   from '/var/www/html/web2/TPE/templates/listProducts.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_616829cb3db760_81620222',
+  'unifunc' => 'content_6168adbf073c28_07269656',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4483b88b7c03ec7f1ae5197c5f450d14c5c29863' => 
     array (
       0 => '/var/www/html/web2/TPE/templates/listProducts.tpl',
-      1 => 1634215890,
+      1 => 1634249595,
       2 => 'file',
     ),
   ),
@@ -22,14 +22,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_616829cb3db760_81620222 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6168adbf073c28_07269656 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="centrado">
     <h1>Tabla de productos</h1>
     <?php if ($_smarty_tpl->tpl_vars['isAdmin']->value) {?>
         <div>
-            <form id="formProduct" action="addProduct" method="POST">
+            <form action="addProduct" method="POST">
                 <input name="nombre" placeholder="Nombre">
                 <input name="descripcion" placeholder="Descripción">
                 <input type="number" name="contenido" placeholder="Contenido Neto (ml)">
@@ -75,10 +75,10 @@ $_smarty_tpl->tpl_vars['product']->do_else = false;
                     <td> <?php echo $_smarty_tpl->tpl_vars['product']->value->categoria;?>
  </td>
                     <td><a href ="product/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_producto;?>
-">VER DETALLE</a>
+" class="btnVer">VER DETALLE</a>
                 <?php if ($_smarty_tpl->tpl_vars['isAdmin']->value) {?>
                     <a href="editProduct/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_producto;?>
-"" class="btnEditar">EDITAR</a>
+" class="btnEditar">EDITAR</a>
                     <a href="deleteProduct/<?php echo $_smarty_tpl->tpl_vars['product']->value->id_producto;?>
 " class="btnBorrar">BORRAR</a></td></tr>
                 <?php } else { ?>

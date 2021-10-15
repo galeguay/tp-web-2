@@ -8,12 +8,16 @@ class LoginView{
         $this->smarty = new Smarty();
     }
 
-    function showLogIn(){
+    function renderLogIn(){
         $this->smarty->display('templates/logIn.tpl');
     }
 
-    function showHome(){
+    function renderHome(){
         $this->smarty->display('templates/home.tpl');
+    }
+
+    function renderRegister(){
+        $this->smarty->display('templates/register.tpl');
     }
 
 }

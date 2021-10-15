@@ -22,9 +22,22 @@ class CategoryModel{
         return $category;
     }
 
+    function addCategory($nombre){
+        $db = $this->connectToDB();
+        $sentencia = $db->prepare("INSERT INTO categorias(nombre) VALUES (?)");
+        $sentencia->execute(array($nombre));
+    }
+
     function updateCategoryToDB($id_category, $nombre){
         $db = $this->connectToDB();
         $sentencia = $db->prepare("UPDATE categorias SET nombre=? WHERE id_categoria=?");
         $sentencia->execute(array($nombre, $id_category));
     }
+
+    function deleteCategory($id_category){
+        $db = $this->connectToDB();
+        $sentencia = $db->prepare( "DELETE FROM categorias WHERE id_categoria=?");
+        $sentencia->execute(array($id_category));
+    }
+
 }

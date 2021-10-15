@@ -25,18 +25,31 @@ class LoginController{
                 $_SESSION ["email" ] = $userEmail;
                 header("Location: ".BASE_URL."adminProducts");
             } else{
-                $this->view->showLogIn();
+                $this->view->renderLogIn();
             }
         }
     }
 
     //REDIRIGE A LA PAGINA DE LOGUEO
     function showLogIn(){
-        $this->view->showLogIn();
+        $this->view->renderLogIn();
     }
 
     //REDIRIGE A LA PAGINA DE LOGUEO
     function logOut(){
         $this->authHelper->logOut();
+    }
+
+    //REDIRIGE A LA PAGINA DE LOGUEO
+    function showRegister(){
+        $this->view->renderRegister();
+    }
+
+    function addUser(){
+        if(isset($_POST['nombre']) && isset($_POST['email']) && isset($_POST['pass'])){
+            $pass=password_hash($_POST['pass'], PASSWORD_BCRYPT);
+            $this->model->addUser($_POST['nombre'], $_POST['email'], $pass);
+            header("Location: ".BASE_URL."home");
+        }
     }
 }

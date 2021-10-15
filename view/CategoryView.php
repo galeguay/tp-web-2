@@ -18,4 +18,9 @@ class CategoryView{
         $this->smarty->assign('category', $category);
         $this->smarty->display('templates/editCategory.tpl');
     }
+
+    function renderCategory($category){
+        $this->smarty->assign('category', $category);
+        $this->smarty->display('templates/category.tpl');
+    }
 }

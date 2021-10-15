@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-14 10:45:20
+/* Smarty version 3.1.39, created on 2021-10-14 21:32:01
   from '/var/www/html/web2/TPE/templates/listCategories.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_616834707ff8f7_04310161',
+  'unifunc' => 'content_6168cc016183a1_69647786',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdf2afad2e7cca09290cf7d6559342e18ef0f81d' => 
     array (
       0 => '/var/www/html/web2/TPE/templates/listCategories.tpl',
-      1 => 1634219101,
+      1 => 1634257919,
       2 => 'file',
     ),
   ),
@@ -22,14 +22,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_616834707ff8f7_04310161 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6168cc016183a1_69647786 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="centrado">
     <h1>Tabla de Categorías</h1>
     <?php if ($_smarty_tpl->tpl_vars['isAdmin']->value) {?>
         <h3>Agregar categoria:</h3>
-        <form id="form-categoria" method="GET">
+        <form action="addCategory" method="POST">
             <input type="text" name="nombre" placeholder="Nombre">
             <input type="submit" id="btnAgregar" value="Agregar">
         </form>
@@ -39,6 +39,9 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
             <tr>
                 <th>NOMBRE</th>
                 <th></th>
+                <?php if ($_smarty_tpl->tpl_vars['isAdmin']->value) {?>
+                <th></th>
+                <?php }?>
             </tr>
         </thead>
         <tbody>
@@ -51,17 +54,14 @@ $_smarty_tpl->tpl_vars['category']->do_else = false;
                 <tr>
                     <td><?php echo $_smarty_tpl->tpl_vars['category']->value->nombre;?>
 </td>
-                    <td><a href ="admin/category<?php echo $_smarty_tpl->tpl_vars['category']->value->id_categoria;?>
-">VER PRODUCTOS</a>
+                    <td><a href ="category/<?php echo $_smarty_tpl->tpl_vars['category']->value->id_categoria;?>
+" class="btnVer">VER PRODUCTOS</a></td>
                     <?php if ($_smarty_tpl->tpl_vars['isAdmin']->value) {?>
                         <td>
-                            <a href="editCategory/<?php echo $_smarty_tpl->tpl_vars['category']->value->id_categoria;?>
+                        <a href="editCategory/<?php echo $_smarty_tpl->tpl_vars['category']->value->id_categoria;?>
 " class="btnEditar">EDITAR</a>
-                            <a href="editCategory/<?php echo $_smarty_tpl->tpl_vars['category']->value->id_categoria;?>
+                        <a href="deleteCategory/<?php echo $_smarty_tpl->tpl_vars['category']->value->id_categoria;?>
 " class="btnBorrar">BORRAR</a></td>
-                        <td>
-                    <?php } else { ?>
-                        </td>
                     <?php }?>
                 </tr>
             <?php
