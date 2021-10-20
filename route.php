@@ -60,7 +60,7 @@ case 'register':
         $productController->showProductsByCategory($params[1], $categories);
         break;
 
-//AGREGA LA CATEGORIA A LA BD
+    //AGREGA LA CATEGORIA A LA BD
     case 'addCategory':
         $categoryController->addCategory();
     break;

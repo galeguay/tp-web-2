@@ -2,19 +2,20 @@
 
 class UserModel{
 
-    private function connectToDB(){
-        return new PDO('mysql:host=localhost;dbname=tpe;charset=utf8','root','');
+    private $db;
+
+    function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;dbname=tpe;charset=utf8','root','');
     }
 
     function addUser($nombre, $email, $pass){
-        $db = $this->connectToDB();
-        $sentence = $db->prepare("INSERT INTO usuarios(nombre, email, contraseña) VALUES(?,?,?)");
+        $sentence = $this->db->prepare("INSERT INTO usuarios(nombre, email, contraseña) VALUES(?,?,?)");
         $sentence->execute(array($nombre, $email, $pass));
     }
 
     function getUser($email){
-        $db = $this->connectToDB();
-        $sentence = $db->prepare(
+        $sentence = $this->db->prepare(
             "SELECT *
             FROM usuarios
             WHERE email=?");
