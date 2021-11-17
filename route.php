@@ -118,6 +118,15 @@ switch ($params[0]) {
         $productController->updateProduct($params[1]);
     break;
 
+    //PAGINA USUARIOS
+    case 'users':
+        $userController->showUsers();
+    break;
+
+    //ELIMINAR USUARIO EN LA DB
+    case 'deleteUser':
+        $userController->deleteUser($params[1]);
+    break;
 
 
     default:

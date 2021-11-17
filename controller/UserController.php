@@ -1,17 +1,16 @@
 <?php
 require_once "model/UserModel.php";
-require_once "view/LoginView.php";
 require_once "helpers/AuthHelper.php";
+require_once "view/UserView.php";
 
 class UserController{
     private $model;
     private $view;
     private $authHelper;
 
-
     public function __construct(){
         $this->model = new UserModel();
-        $this->view = new LoginView();
+        $this->view = new UserView();
         $this->authHelper = new AuthHelper();
     }
 
@@ -31,6 +30,7 @@ class UserController{
         if($user && password_verify($pass ,($user->contraseña ))){
             session_start();
             $_SESSION ["email"] = $userEmail;
+            $_SESSION ["rol"] = $user->rol;
             return true;
         }else return false;
     }
@@ -62,4 +62,32 @@ class UserController{
             }//ver de mostrar error de campos vacio
         }//ver de mostrar error de campos vacio
     }
+
+    function checkAdmin(){
+        session_start();
+        if (!isset($_SESSION["rol"])){
+            if (($_SESSION["rol"]) == 2){
+                return true;
+            }
+            else{
+                return false;
+            } 
+        }
+        else{
+            return false;
+        }
+    }
+
+    function showUsers(){
+        $users = $this->model->getUsers();
+        $this->view->renderUsers($users);
+    }
+
+    function deleteUser($id){
+        $this->checkAdmin();
+        $this->model->deleteUserFromDB($id);
+        header("Location: ".BASE_URL."users");
+    }
+
+
 }

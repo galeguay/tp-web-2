@@ -1,12 +1,5 @@
 <?php
 
-
-ini_set('display_errors', 1);
-
-ini_set('display_startup_errors', 1);
-
-error_reporting(E_ALL);
-
 class UserModel{
 
     private $db;
@@ -29,5 +22,17 @@ class UserModel{
         $sentence->execute(array($email));
         $user = $sentence->fetch(PDO::FETCH_OBJ);
         return $user;
+    }
+
+    function getUsers(){
+        $sentence = $this->db->prepare("SELECT id_usuario, nombre, email FROM usuarios");
+        $sentence->execute();
+        $users = $sentence->fetchAll(PDO::FETCH_OBJ);
+        return $users;
+    }
+
+    function deleteUserFromDB($idUsuario){
+        $sentence = $this->db->prepare("DELETE FROM `usuarios` WHERE id_usuario=?");
+        $sentence->execute(array($idUsuario));
     }
 }
