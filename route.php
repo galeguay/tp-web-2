@@ -35,6 +35,9 @@ switch ($params[0]) {
         header("Location: ".BASE_URL."home");
         break;
 
+    case 'modifyUserRol':
+        $userController->modifyUserRol();
+        break;
 
     //REDIRIGE A LA PAGINA DE REGISTRO DE USUARIO
     case 'register':
@@ -45,7 +48,6 @@ switch ($params[0]) {
     case 'addUser':
         $userController->addUser();
     break;
-
 
     case 'categories':
         $categoryController->showCategories();
@@ -79,8 +81,6 @@ switch ($params[0]) {
     case 'updateCategory':
         $categoryController->updateCategoryToDB($params[1],$_POST['nombre']);
     break;
-
-
 
     case 'products':
         $categories = $categoryController->getCategories();
@@ -117,8 +117,6 @@ switch ($params[0]) {
     case 'updateProduct':
         $productController->updateProduct($params[1]);
     break;
-
-
 
     default:
         echo "404 page not found";
