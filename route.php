@@ -1,7 +1,7 @@
 <?php
 require_once "controller/ProductController.php";
 require_once "controller/CategoryController.php";
-require_once "controller/LoginController.php";
+require_once "controller/UserController.php";
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -12,7 +12,7 @@ else
     $action = 'home';
 
 $params = explode('/', $action);
-$loginController = new LoginController();
+$userController = new UserController();
 $productController = new ProductController();
 $categoryController = new CategoryController();
 
@@ -23,27 +23,27 @@ switch ($params[0]) {
         break;
 
     case 'logIn':
-        $loginController->showLogIn();
+        $userController->showLogIn();
         break;
 
-    case 'verifyLogIn':
-        $loginController->verifyLogIn();
+    case 'startSession':
+        $userController->startSession();
         break;
 
     case 'logOut':
-        $loginController->logOut();
+        $userController->logOut();
         header("Location: ".BASE_URL."home");
         break;
 
 
-//REDIRIGE A LA PAGINA DE REGISTRO DE USUARIO
-case 'register':
-    $loginController->showRegister();
+    //REDIRIGE A LA PAGINA DE REGISTRO DE USUARIO
+    case 'register':
+        $userController->showRegister();
     break;
-    
+
     //AGREGA USUARIO A LA BD
     case 'addUser':
-        $loginController->addUser();
+        $userController->addUser();
     break;
 
 
