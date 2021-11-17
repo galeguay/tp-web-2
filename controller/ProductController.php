@@ -36,6 +36,11 @@ class ProductController{
         $this->view->renderProduct($product);
     }
 
+    function showEditProduct($id_product, $categories){
+        $product = $this->model->getProduct($id_product);
+        $this->view->renderEditProduct($product, $categories);
+    }
+
     function addProduct(){
         $this->authHelper->checkLoggedIn();
         if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
@@ -56,11 +61,6 @@ class ProductController{
             $this->model->updateProduct($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria'], $id_producto);
             header("Location: ".BASE_URL."adminProducts");
         }
-    }
-
-    function showEditProduct($id_product, $categories){
-        $product = $this->model->getProduct($id_product);
-        $this->view->renderEditProduct($product, $categories);
     }
 
 }

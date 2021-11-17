@@ -14,7 +14,7 @@ class UserController{
         $this->authHelper = new AuthHelper();
     }
 
-    //VERIFICA SI EXISTE EL EMAIL EN LA BD Y LA CONTRASEÑA COINCIDE
+    //VERIFICA LOS CAMPOS PASADOS POR POST EMAIL Y CONTRASEÑA PARA INICIAR SESION
     function startSession(){
         if(isset($_POST['email']) && isset($_POST['pass'])){
             if($this->serverStartSession($_POST['email'], $_POST['pass'])){
@@ -25,6 +25,7 @@ class UserController{
         }
     }
 
+    //VERIFICA SI EXISTE EL EMAIL EN LA BD Y LA CONTRASEÑA COINCIDE E INICIA SESSION EN EL SERVIDOR
     function serverStartSession($userEmail, $pass){
         $user = $this->model->getUser($userEmail);
         if($user && password_verify($pass ,($user->contraseña ))){
@@ -33,6 +34,27 @@ class UserController{
             $_SESSION ["rol"] = $user->rol;
             return true;
         }else return false;
+    }
+
+    //VERIFICA SI EL ROL DEL USUARIO ES ADMINISTRADOR
+    function checkAdmin(){
+        session_start();
+        if(isset($_SESSION['rol'])){
+            if($_SESSION['rol'] == 2)
+                return true;
+            else return false;
+        }else return false;
+    }
+
+    //MODIFICA EL ROL DEL USUARIO
+    function modifyUserRol(){
+        if(isset($_POST['rol']) && isset($_POST['email'])){
+            if(!empty($_POST['rol']) && !empty($_POST['email'])){
+                if($this->checkAdmin){
+                    $this->model->modifyUserRol($_POST['email'], $_POST['rol']);
+                }//mostrar error que no es admin
+            }//mostrar error q estan vacio los campos
+        }//mostrar error de que no se estableció alguno de los campos
     }
 
     //REDIRIGE A LA PAGINA DE LOGUEO
@@ -61,21 +83,6 @@ class UserController{
                 header("Location: ".BASE_URL."home");
             }//ver de mostrar error de campos vacio
         }//ver de mostrar error de campos vacio
-    }
-
-    function checkAdmin(){
-        session_start();
-        if (!isset($_SESSION["rol"])){
-            if (($_SESSION["rol"]) == 2){
-                return true;
-            }
-            else{
-                return false;
-            } 
-        }
-        else{
-            return false;
-        }
     }
 
     function showUsers(){
