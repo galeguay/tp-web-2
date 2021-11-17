@@ -1,7 +1,7 @@
 <?php
 require_once 'libs/smarty/Smarty.class.php';
 
-class UserView{ 
+class UserView{
 
     private $smarty;
 
@@ -17,7 +17,7 @@ class UserView{
         $this->smarty->assign('users', $users);
         $this->smarty->display('templates/listUsers.tpl');
     }
-    
+
     function renderLogIn(){
         $this->smarty->display('templates/logIn.tpl');
     }

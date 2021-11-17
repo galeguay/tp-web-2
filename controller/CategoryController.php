@@ -30,6 +30,12 @@ class CategoryController{
         $this->view->renderCategories($categories, true);
     }
 
+    function showEditCategory($id){
+        $this->authHelper->checkLoggedIn();
+        $category = $this->model->getCategory($id);
+        $this->view->renderEditCategory($category);
+    }
+
     function getCategories(){
         $categories = $this->model->getCategories();
         return $categories;
@@ -46,12 +52,6 @@ class CategoryController{
             $this->model->addCategory($_POST['nombre']);
             header("Location: ".BASE_URL."adminCategories");
         }
-    }
-
-    function showEditCategory($id){
-        $this->authHelper->checkLoggedIn();
-        $category = $this->model->getCategory($id);
-        $this->view->renderEditCategory($category);
     }
 
     function updateCategoryToDB($id_categoria){
