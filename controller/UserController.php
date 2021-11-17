@@ -66,16 +66,11 @@ class UserController{
     function checkAdmin(){
         session_start();
         if (!isset($_SESSION["rol"])){
-            if (($_SESSION["rol"]) == 2){
+            if (($_SESSION["rol"]) == 2)
                 return true;
-            }
-            else{
-                return false;
-            } 
+            else return false;
         }
-        else{
-            return false;
-        }
+        else return false;
     }
 
     function showUsers(){
