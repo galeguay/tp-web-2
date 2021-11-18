@@ -19,6 +19,7 @@ class ProductView{
     //RENDERIZA PAGINA DE DETALLES DE PRODUCTOS
     function renderProduct($product){
         $this->smarty->assign('product', $product);
+        //$this->smarty->assign('comment', $comment);
         $this->smarty->display('templates/product.tpl');
     }
 

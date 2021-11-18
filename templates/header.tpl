@@ -27,4 +27,4 @@
             </div>
         </nav>
     </header>
-    <div class="centrado">
+<div class="centrado">

@@ -4,8 +4,7 @@ class CategoryModel{
 
     private $db;
 
-    function __construct()
-    {
+    function __construct(){
         $this->db = new PDO('mysql:host=localhost;dbname=tpe;charset=utf8','root','');
     }
 
