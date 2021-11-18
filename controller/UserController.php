@@ -16,60 +16,57 @@ class UserController{
 
     //VERIFICA LOS CAMPOS PASADOS POR POST EMAIL Y CONTRASEÑA PARA INICIAR SESION
     function startSession(){
+        $this->authHelper->checkLoggedIn();
         if(isset($_POST['email']) && isset($_POST['pass'])){
             if($this->serverStartSession($_POST['email'], $_POST['pass'])){
-                header("Location: ".BASE_URL."adminProducts");
+                header("Location: ".BASE_URL."home");
             } else{
-                $this->view->renderLogIn();
+                $rol = $this->authHelper->getRol();
+                $this->view->renderLogIn($rol);
             }
         }
     }
 
     //VERIFICA SI EXISTE EL EMAIL EN LA BD Y LA CONTRASEÑA COINCIDE E INICIA SESSION EN EL SERVIDOR
+    //UTILIZADO POR: startSession, addUser
     function serverStartSession($userEmail, $pass){
         $user = $this->model->getUser($userEmail);
-        if($user && password_verify($pass ,($user->contraseña ))){
+        if($user && password_verify($pass ,($user->contraseña))){
             session_start();
-            $_SESSION ["email"] = $userEmail;
-            $_SESSION ["rol"] = $user->rol;
+            $_SESSION ['email'] = $userEmail;
+            $_SESSION ['rol'] = $user->rol;
             return true;
         }else return false;
     }
 
-    //VERIFICA SI EL ROL DEL USUARIO ES ADMINISTRADOR
-    function checkAdmin(){
-        session_start();
-        if(isset($_SESSION['rol'])){
-            if($_SESSION['rol'] == 2)
-                return true;
-            else return false;
-        }else return false;
-    }
-
-    //MODIFICA EL ROL DEL USUARIO
-    function modifyUserRol(){
-        if(isset($_POST['rol']) && isset($_POST['email'])){
-            if(!empty($_POST['rol']) && !empty($_POST['email'])){
-                if($this->checkAdmin){
-                    $this->model->modifyUserRol($_POST['email'], $_POST['rol']);
-                }//mostrar error que no es admin
-            }//mostrar error q estan vacio los campos
-        }//mostrar error de que no se estableció alguno de los campos
-    }
-
-    //REDIRIGE A LA PAGINA DE LOGUEO
+    //RENDERIZA LA PAGINA DE LOGUEO
     function showLogIn(){
-        $this->view->renderLogIn();
+        if ($this->authHelper->isLoggedIn())
+            $this->view->renderError("Ya estás logueado");
+        else{
+            $this->view->renderLogIn(); //si no inicio seción el valor de rol de usuario es 0
+        }
     }
 
-    //CIERRA SESIÓN
-    function logOut(){
-        $this->authHelper->logOut();
+    //RENDERIZA LA PAGINA CON LISTA DE USUARIOS (SOLO ADMINISTRADOR)
+    function showUsers(){
+        $this->authHelper->checkAdmin();
+        $users = $this->model->getUsers();
+        $this->view->renderUsers($users);
     }
 
     //LLEVA A LA PAGINA DE REGISTRO DE USUARIO
     function showRegister(){
         $this->view->renderRegister();
+    }
+
+    function showError($mensaje){
+        $this->view->renderError($mensaje);
+    }
+
+    //CIERRA SESIÓN
+    function logOut(){
+        $this->authHelper->logOut();
     }
 
     //REGISTRA UN NUEVO USUARIO EN LA BD
@@ -85,16 +82,19 @@ class UserController{
         }//ver de mostrar error de campos vacio
     }
 
-    function showUsers(){
-        $users = $this->model->getUsers();
-        $this->view->renderUsers($users);
+    //MODIFICA EL ROL DEL USUARIO
+    function modifyUserRol($idUsuario){
+        $this->authHelper->checkAdmin();
+        if(isset($_POST['rol']) && $idUsuario){
+            $this->model->modifyUserRol($idUsuario, $_POST['rol']);
+            header("Location: ".BASE_URL."users");
+        }else echo "ERROR: no se estableció el rol";
     }
 
     function deleteUser($id){
-        $this->checkAdmin();
+        $this->authHelper->checkAdmin();
         $this->model->deleteUserFromDB($id);
         header("Location: ".BASE_URL."users");
     }
-
 
 }

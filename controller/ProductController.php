@@ -17,18 +17,18 @@ class ProductController{
 
     function showProducts($categories){
         $products = $this->model->getProducts();
-        $this->view->renderProducts($products, false, $categories);
+        $this->view->renderProducts($products, $categories);
     }
 
     function showProductsAsAdmin($categories){
         $this->authHelper->checkLoggedIn();
         $products = $this->model->getProducts();
-        $this->view->renderProducts($products, true, $categories);
+        $this->view->renderProducts($products, $categories);
     }
 
     function showProductsByCategory($id_category, $categories){
         $products = $this->model->getProductsCategory($id_category);
-        $this->view->renderProducts($products, false, $categories);
+        $this->view->renderProducts($products, $categories);
     }
 
     function showProduct($id_product){

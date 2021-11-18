@@ -1,5 +1,5 @@
-{include file="header.tpl"}
-<div class="centrado">
+{include file="header.tpl" title=$product->nombre}
+<div class="flexColumna">
     <h1>{$product->nombre}</h1>
     <p class="angosto"><span class="resaltado">DESCRIPCIÓN:</span> {$product->descripcion}</p>
     <p><span class="resaltado">CONTENIDO:</span> {$product->contenido} ml.</p>

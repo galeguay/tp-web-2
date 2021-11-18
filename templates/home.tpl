@@ -1,5 +1,4 @@
-{include file="header.tpl"}
-
+{include file="header.tpl" title='Inicio'}
 <h1>Registrarse</h1>
         <a href="logIn" class="btnVer"></a>
     <h1>Seccion categorias</h1>

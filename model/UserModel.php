@@ -15,9 +15,9 @@ class UserModel{
         $sentence->execute(array($nombre, $email, $pass));
     }
 
-    function modifyUserRol($userEmail, $rol){
-        $sentence = $this->db->prepare("UPDATE usuarios SET rol=? WHERE email=?");
-        $sentence->execute(array($rol, $userEmail));
+    function modifyUserRol($idUsuario, $rol){
+        $sentence = $this->db->prepare("UPDATE usuarios SET rol=? WHERE id_usuario=?");
+        $sentence->execute(array($rol, $idUsuario));
     }
 
     function getUser($email){
@@ -31,7 +31,7 @@ class UserModel{
     }
 
     function getUsers(){
-        $sentence = $this->db->prepare("SELECT id_usuario, nombre, email FROM usuarios");
+        $sentence = $this->db->prepare("SELECT id_usuario, nombre, email, rol FROM usuarios");
         $sentence->execute();
         $users = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $users;

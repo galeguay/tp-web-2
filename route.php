@@ -36,7 +36,7 @@ switch ($params[0]) {
         break;
 
     case 'modifyUserRol':
-        $userController->modifyUserRol();
+        $userController->modifyUserRol($params[1]);
         break;
 
     //REDIRIGE A LA PAGINA DE REGISTRO DE USUARIO
@@ -48,6 +48,18 @@ switch ($params[0]) {
     case 'addUser':
         $userController->addUser();
     break;
+
+    case 'notAdmin':
+        $userController->showError("Se necesitan privilegios de administrador");
+    break;
+
+    case 'notAdmin':
+        $mensaje = "Se necesitan privilegios de administrador";
+        $userController->showError($mensaje);
+    break;
+
+
+
 
     case 'categories':
         $categoryController->showCategories();

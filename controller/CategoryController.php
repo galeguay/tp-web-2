@@ -16,7 +16,7 @@ class CategoryController{
 
     function showCategories(){
         $categories = $this->model->getCategories();
-        $this->view->renderCategories($categories, false);
+        $this->view->renderCategories($categories);
     }
 
     function showCategory($id){
@@ -27,7 +27,7 @@ class CategoryController{
     function showCategoriesAsAdmin(){
         $this->authHelper->checkLoggedIn();
         $categories = $this->model->getCategories();
-        $this->view->renderCategories($categories, true);
+        $this->view->renderCategories($categories);
     }
 
     function showEditCategory($id){

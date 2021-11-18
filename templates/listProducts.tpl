@@ -1,8 +1,9 @@
-{include file="header.tpl"}
-<div class="centrado">
+{include file="header.tpl" title='Productos'}
+<div class="flexColumna">
     <h1>Tabla de productos</h1>
-    {if $isAdmin}
-        <div>
+    {if $userRol == 2}
+        <h3>Agregar producto:</h3>
+        <div class="flex">
             <form action="addProduct" method="POST">
                 <input name="nombre" placeholder="Nombre">
                 <input name="descripcion" placeholder="Descripción">
@@ -22,7 +23,11 @@
                 <th>NOMBRE</th>
                 <th>CONTENIDO</th>
                 <th>CATEGORÍA</th>
-                <th></th>
+                {if $userRol == 2}
+                    <th>ADMINISTRAR</th>
+                {else}
+                    <th></th>
+                {/if}
             </tr>
         </thead>
         <tbody>
@@ -32,12 +37,13 @@
                     <td> {$product->contenido} ml. </td>
                     <td> {$product->categoria} </td>
                     <td><a href ="product/{$product->id_producto}" class="btnVer">VER DETALLE</a>
-                {if $isAdmin}
+                {if $userRol == 2}
                     <a href="editProduct/{$product->id_producto}" class="btnEditar">EDITAR</a>
-                    <a href="deleteProduct/{$product->id_producto}" class="btnBorrar">BORRAR</a></td></tr>
+                    <a href="deleteProduct/{$product->id_producto}" class="btnBorrar">BORRAR</a></td>
                 {else}
-                    </td></tr>
+                    </td>
                 {/if}
+                </tr>
             {/foreach}
         </tbody>
     </table>

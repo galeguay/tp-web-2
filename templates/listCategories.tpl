@@ -1,20 +1,23 @@
-{include file="header.tpl"}
-<div class="centrado">
+{include file="header.tpl" title=$category->nombre}
+<div class="flexColumna">
     <h1>Tabla de Categorías</h1>
-    {if $isAdmin}
+    {if $userRol == 2}
         <h3>Agregar categoria:</h3>
-        <form action="addCategory" method="POST">
-            <input type="text" name="nombre" placeholder="Nombre">
-            <input type="submit" id="btnAgregar" value="Agregar">
-        </form>
+        <div>
+            <form action="addCategory" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre">
+                <input type="submit" id="btnAgregar" value="Agregar">
+            </form>
+        </div>
     {/if}
     <table>
         <thead>
             <tr>
                 <th>NOMBRE</th>
-                <th></th>
-                {if $isAdmin}
-                <th></th>
+                {if $userRol == 2}
+                    <th>ADMINISTRAR</th>
+                {else}
+                    <th></th>
                 {/if}
             </tr>
         </thead>
@@ -22,11 +25,12 @@
             {foreach from=$categories item=$category}
                 <tr>
                     <td>{$category->nombre}</td>
-                    <td><a href ="category/{$category->id_categoria}" class="btnVer">VER PRODUCTOS</a></td>
-                    {if $isAdmin}
-                        <td>
+                    <td><a href ="category/{$category->id_categoria}" class="btnVer">VER PRODUCTOS</a>
+                    {if $userRol == 2}
                         <a href="editCategory/{$category->id_categoria}" class="btnEditar">EDITAR</a>
                         <a href="deleteCategory/{$category->id_categoria}" class="btnBorrar">BORRAR</a></td>
+                    {else}
+                        </td></tr>
                     {/if}
                 </tr>
             {/foreach}

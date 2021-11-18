@@ -23,9 +23,21 @@ td {
     padding: 10px;
 }
 
-form{
+
+
+/*DISPLAYS*/
+.flex{
     display: flex;
-    justify-content: center;
+}
+
+.flexColumna{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+form{
     margin-bottom: 20px;
 }
 
@@ -54,11 +66,11 @@ a{
     font-family: 'Staatliches', cursiva;
 }
 
-.centrado{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+a.admin{
+    color: rgb(167, 66, 29);
 }
+
+
 
 .spaced{
     display: flex;
@@ -69,14 +81,31 @@ a{
     width: 60%;
 }
 
+nav{
+    border-bottom: 2px solid black;
+}
+
 nav a{
     padding: 10px;
+
 }
 
 header{
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 
 .resaltado{
-    color: darkred;
+    background-color:  darkred;
+    color: white;
+    padding: 5px 5px 0px 5px;
+}
+
+textarea{
+    resize: none;
+}
+
+.emailUser{
+    background-color: rgb(30, 145, 30);
+    color: white;
+    padding: 5px 5px 0px 5px;
 }
