@@ -10,9 +10,9 @@ class CommentModel{
     }
 
 
-    function getComments(){
-        $sentence = $this->db->prepare("SELECT * FROM comentarios");
-        $sentence->execute();
+    function getComments($idProduct){
+        $sentence = $this->db->prepare("SELECT * FROM comentarios WHERE id_producto=?");
+        $sentence->execute(array($idProduct));
         $comments = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }

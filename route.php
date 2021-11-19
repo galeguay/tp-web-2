@@ -63,10 +63,6 @@ switch ($params[0]) {
         $categoryController->showCategories();
         break;
 
-    case 'adminCategories':
-        $categoryController->showCategoriesAsAdmin();
-        break;
-
     case 'category':
         $categories = $categoryController->getCategories();
         $productController->showProductsByCategory($params[1], $categories);
@@ -100,12 +96,6 @@ switch ($params[0]) {
     case 'product':
         $productController->showProduct($params[1]);
         break;
-
-    case 'adminProducts':
-        $categories = $categoryController->getCategories();
-        $productController->showProductsAsAdmin($categories);
-        break;
-
 
     //AGREGA EL PRODUCTO A LA BD
     case 'addProduct':

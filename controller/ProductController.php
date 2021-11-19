@@ -19,13 +19,13 @@ class ProductController{
         $products = $this->model->getProducts();
         $this->view->renderProducts($products, $categories);
     }
-
+/*
     function showProductsAsAdmin($categories){
         $this->authHelper->checkLoggedIn();
         $products = $this->model->getProducts();
         $this->view->renderProducts($products, $categories);
     }
-
+*/
     function showProductsByCategory($id_category, $categories){
         $products = $this->model->getProductsCategory($id_category);
         $this->view->renderProducts($products, $categories);
@@ -45,21 +45,21 @@ class ProductController{
         $this->authHelper->checkLoggedIn();
         if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
             $this->model->addProductToDB($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria']);
-            header("Location: ".BASE_URL."adminProducts"); //CAMBIAR A VIEW
+            header("Location: ".BASE_URL."products");
         }
     }
 
     function deleteProduct($id_producto){
         $this->authHelper->checkLoggedIn();
         $this->model->deleteProductFromDB($id_producto);
-        header("Location: ".BASE_URL."adminProducts");
+        header("Location: ".BASE_URL."products");
     }
 
     function updateProduct($id_producto){
         $this->authHelper->checkLoggedIn();
         if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
             $this->model->updateProduct($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria'], $id_producto);
-            header("Location: ".BASE_URL."adminProducts");
+            header("Location: ".BASE_URL."products");
         }
     }
 

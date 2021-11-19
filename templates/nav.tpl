@@ -1,8 +1,8 @@
 <nav class="flexSpaceBetween">
     {if $userRol == 2}
         <div>
-            <a class="admin" href="adminProducts">Productos</a>
-            <a class="admin" href="adminCategories">Categorias</a>
+            <a class="admin" href="products">Productos</a>
+            <a class="admin" href="categories">Categorias</a>
             <a class="admin" href="users">Usuarios</a>
         </div>
     {else}

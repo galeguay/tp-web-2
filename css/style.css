@@ -52,24 +52,27 @@ section{
     width: 90%;
 }
 
-form textarea{
-    display: flex;
-    min-height: 200px;
-    width: 80%;
+input[type=submit]{
+    border: none
 }
-
 form input,form textarea{
     display: inline-block;
     font-size: large;
     border-radius: 0;
     border-color: black;
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-
-input[type=submit]{
-    border: none
+form textarea{
+    display: flex;
+    width: 80%;
 }
-
+textarea.descripcion{
+    min-height: 200px;
+}
+textarea.comentario{
+    min-height: 100px;
+}
 textarea{
     resize: none;
 }
@@ -227,6 +230,76 @@ section.agregar span{
 }
 
 
-/*PRODUCTO*/
-/*class="descProducto"
-class="descProducto"*/
+
+/*ESTRELLAS*/
+.puntuacion label{
+    font-size: xx-large;
+    color:grey;
+}
+.puntuacion label:hover{
+    color:orange;
+}
+.puntuacion label:hover ~ label{
+    color:orange;
+}
+input[type = "radio"]:checked ~ label{
+    color:orange;
+}
+
+input[type = "radio"]{ 
+    display:none;
+}
+
+section.comentario{
+    width: 70%;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.puntuacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+}
+.columnaComentario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+p.fatalError{
+    font-size: xxx-large;
+    color: red;
+}
+
+section.producto{
+    display:flex;
+    width: 70%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.columnaProducto{
+    display: flex;
+    flex-direction: column;
+}
+span.resaltadoComentario{
+    background-color: yellow;
+    color: black;
+    padding: 2px 5px 0px 5px;
+}
+section.comentarios{
+    max-width: 700px;
+}
+
+div.comentario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    
+    padding: 5px;
+    margin: 2px;
+    width: 60%;
+}

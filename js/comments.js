@@ -1,6 +1,8 @@
 "use strict"
 
-const ApiURL = "api/comment";
+const ApiURL = "api/comments";
+
+let idProduct = document.querySelector("#nombreProducto").dataset.idProduct;
 
 let formComments = document.querySelector("#formComentario");
 formComments.addEventListener("click", e =>{
@@ -20,7 +22,7 @@ async function saveComment(comment){
             body: JSON.stringify(comment) //stringfy lo convierte a string
         })
         if (response.ok){
-            getComments();
+            getComments(idProduct);
         }
     }catch(error){
         console.log(error);
@@ -36,10 +38,10 @@ let app = new Vue({
 });
 
 
-async function getComments(){
+async function getComments(idProduct){
     //fetch para traer los comentarios
     try {
-        let response = await fetch (ApiURL);
+        let response = await fetch (ApiURL + "/" + idProduct);
         let comments = await response.json();
 
         app.comments = comments;
@@ -47,8 +49,7 @@ async function getComments(){
         console.log(e);
     }
 }
-
-getComments();
+getComments(idProduct);
 
 
 

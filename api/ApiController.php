@@ -19,7 +19,8 @@ class ApiController{
     }
 
     public function getComments($params = null){
-        $comments = $this->model->getComments();
+        $idProduct = $params[':ID'];
+        $comments = $this->model->getComments($idProduct);
         $this->view->response($comments, 200);
     }
 
