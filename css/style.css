@@ -14,25 +14,21 @@ h3{
     margin: 10px;
 }
 
-/*TABLA*/
 
-th {
-    background-color: grey;
-    color: white;
+
+
+/*LOGIN */
+.session{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 40px;
 }
 
-table, td, tr {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
 
-td {
-    text-align: center;
-    padding: 10px;
-}
 
 /*DISPLAYS*/
-.flex, .flexCentered, .flexColumna, .flexSpaceBetween, .flexSpaceAround, .flexWrap{
+.flex, .flexColumna, .flexSpaceBetween, .flexSpaceAround, .flexWrap{
     display: flex;
     width: 100%;
 }
@@ -49,14 +45,6 @@ td {
 .flexWrap{
     justify-content: center;
     flex-wrap: wrap;
-}
-.flexCentered{
-    justify-content: center;
-}
-
-.alignRight{
-    display: flex;
-    justify-content: end;
 }
 
 section{
@@ -75,7 +63,7 @@ form input,form textarea{
     font-size: large;
     border-radius: 0;
     border-color: black;
-    margin: 2px;
+    margin: 5px;
 }
 
 input[type=submit]{
@@ -86,7 +74,7 @@ textarea{
     resize: none;
 }
 
-.btnBorrar, .btnEditar, .btnAgregar, .btnVerDetalle {
+.btnBorrar, .btnEditar, .btnAgregar, .btnVerDetalle, .btnIniciarSesion, .btnRegistrarse {
     color: white;
     padding: 2px 5px 2px 5px;
     text-align: center;
@@ -98,11 +86,11 @@ textarea{
 .btnEditar {
     background-color: rgb(245, 114, 67);
 }
-.btnAgregar {
+.btnAgregar, .btnRegistrarse {
     background-color: green;
     font-size: larger;
 }
-.btnVer {
+.btnVerDetalle, .btnIniciarSesion {
     background-color: rgb(74, 74, 138);
 }
 
@@ -112,8 +100,22 @@ a{
     font-family: 'Staatliches', cursiva;
 }
 
-nav a.admin{
-    color: rgb(212, 89, 44);
+
+/*USUARIOS*/
+
+th {
+    background-color: grey;
+    color: white;
+}
+
+table, td, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
 }
 
 
@@ -138,13 +140,16 @@ nav{
     border-bottom: 2px solid black;
     padding-bottom: 2px;
 }
-nav a{
-    padding: 10px;
-}
 .resaltado, nav span.resaltado, nav span.emailUser{
     background-color:  darkred;
     color: white;
     padding: 2px 5px 0px 5px;
+}
+nav a{
+    padding: 10px;
+}
+nav a.admin{
+    color: darkgreen;
 }
 nav span.resaltado{
     background-color:  darkgreen;
@@ -166,6 +171,7 @@ nav span.emailUser{
     width: 60%;
 }
 
+/*PRODUCTOS*/
 div.tarjetaProducto{
     display: flex;
     flex-direction: column;
@@ -188,14 +194,9 @@ div.datosProducto{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px dashed;
-    border: 1px dashed;
     margin: 5px 10% 5px 10%;
     padding-left: 4px;
     overflow: unset;
-}
-.btnVerDetalle{
-    background-color: rgb(37, 69, 139);
 }
 section.agregar{
     width: 70%;
@@ -212,3 +213,20 @@ section.agregar span{
     background-color: #685866;
     margin-bottom: 5px;
 }
+.botoneraAdmin{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(114, 216, 114);
+    align-items: center;
+    border-top: 2px dashed darkgreen;
+    border-bottom: 2px dashed darkgreen;
+    padding: 3px;
+}
+.botoneraAdmin a{
+    margin: 0px 10px 0px 10px;
+}
+
+
+/*PRODUCTO*/
+/*class="descProducto"
+class="descProducto"*/

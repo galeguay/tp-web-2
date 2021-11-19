@@ -11,7 +11,7 @@ class CommentModel{
 
 
     function getComments(){
-        $sentence = $this->db->prepare("SELECT contenido, puntaje FROM comentarios");
+        $sentence = $this->db->prepare("SELECT * FROM comentarios");
         $sentence->execute();
         $comments = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $comments;

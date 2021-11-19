@@ -14,7 +14,7 @@
                 <a href ="product/{$product->id_producto}" class="btnVerDetalle">VER DETALLE</a>
             </div>
             {if $userRol == 2}
-                <div class="flexSpaceAround">
+                <div class="botoneraAdmin">
                     <a href="editProduct/{$product->id_producto}" class="btnEditar">EDITAR</a>
                     <a href="deleteProduct/{$product->id_producto}" class="btnBorrar">BORRAR</a>
                 </div>

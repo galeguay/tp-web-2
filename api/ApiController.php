@@ -1,13 +1,18 @@
 <?php
+require_once "model/CommentModel.php";
+require_once "api/ApiView.php";
 
 class ApiController{
     private $model;
     private $view;
+    private $data;
+
 
     public function __construct(){
         $this->model = new CommentModel();
         $this->view = new ApiView();
     }
+
 
     private function getData() {
         return json_decode($this->data);
@@ -18,12 +23,14 @@ class ApiController{
         $this->view->response($comments, 200);
     }
 
-    public function getComment($idComment){
+    public function getComment($params = null){
+        $idComment = $params[':ID'];
         $comment = $this->model->getComment($idComment);
         $this->view->response($comment, 200);
     }
 
-    public function deleteComment($idComment){
+    public function deleteComment($params = null){
+        $idComment = $params[':ID'];
         $this->model->deleteComment($idComment);
     }
 

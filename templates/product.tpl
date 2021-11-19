@@ -8,7 +8,7 @@
     <div class="flexColumna">
         <form id="formComentario">
             <label for="contenido">Contenido del comentario</label>
-            <textarea name="contenido"></textarea>
+            <textarea class="comentario" name="contenido" placeholder="Comentario..."></textarea>
             <label for="puntaje">Puntaje</label>
             <input type="number" min="1" max="5" name="puntaje">
             <input type="submit" value="Agregar">

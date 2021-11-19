@@ -2,7 +2,7 @@
 <h1>Editar Producto</h1>
 <form action="updateProduct/{$product->id_producto}" method="POST">
     <input name="nombre" placeholder="Nombre" value="{$product->nombre}">
-    <textarea name="descripcion" placeholder="Descripción">{$product->descripcion}</textarea>
+    <textarea class="descProducto" name="descripcion" placeholder="Descripción">{$product->descripcion}</textarea>
     <input type="number" name="contenido" placeholder="Contenido Neto (ml)" value="{$product->contenido}">
     <select name="id_categoria">
         {foreach from=$categories item=$category}

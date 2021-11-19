@@ -1,4 +1,4 @@
-<nav class="spaced">
+<nav class="flexSpaceBetween">
     {if $userRol == 2}
         <div>
             <a class="admin" href="adminProducts">Productos</a>
@@ -23,7 +23,11 @@
                 <span class="resaltado">ADMIN</span>
             {/if}
             <span class="emailUser">{$userEmail}</span>
-            <a href="logOut">Cerrar Sesión</a>
+            {if $userRol == 2}
+                <a href="logOut" class="admin">Cerrar Sesión</a>
+            {else}
+                <a href="logOut">Cerrar Sesión</a>
+            {/if}
         </div>
     {/if}
 </nav>
