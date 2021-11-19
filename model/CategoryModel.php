@@ -16,25 +16,25 @@ class CategoryModel{
     }
 
     function getCategory($id_category){
-        $sentencia = $this->db->prepare( "SELECT * FROM categorias WHERE id_categoria=?");
-        $sentencia->execute(array($id_category));
-        $category = $sentencia->fetch(PDO::FETCH_OBJ);
+        $sentence = $this->db->prepare( "SELECT * FROM categorias WHERE id_categoria=?");
+        $sentence->execute(array($id_category));
+        $category = $sentence->fetch(PDO::FETCH_OBJ);
         return $category;
     }
 
     function addCategory($nombre){
-        $sentencia = $this->db->prepare("INSERT INTO categorias(nombre) VALUES (?)");
-        $sentencia->execute(array($nombre));
+        $sentence = $this->db->prepare("INSERT INTO categorias(nombre) VALUES (?)");
+        $sentence->execute(array($nombre));
     }
 
     function updateCategoryToDB($id_category, $nombre){
-        $sentencia = $this->db->prepare("UPDATE categorias SET nombre=? WHERE id_categoria=?");
-        $sentencia->execute(array($nombre, $id_category));
+        $sentence = $this->db->prepare("UPDATE categorias SET nombre=? WHERE id_categoria=?");
+        $sentence->execute(array($nombre, $id_category));
     }
 
     function deleteCategory($id_category){
-        $sentencia = $this->db->prepare( "DELETE FROM categorias WHERE id_categoria=?");
-        $sentencia->execute(array($id_category));
+        $sentence = $this->db->prepare( "DELETE FROM categorias WHERE id_categoria=?");
+        $sentence->execute(array($id_category));
     }
 
 }
