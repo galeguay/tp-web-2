@@ -1,0 +1,28 @@
+<?php
+
+class CommentModel{
+
+    private $db;
+
+    function __construct(){
+        $this->db = new PDO('mysql:host=localhost;dbname=tpe;charset=utf8','root','');
+    }
+
+    function getComments(){
+        $sentence = $this->db->prepare("SELECT contenido, puntaje FROM comentarios");
+        $sentence->execute();
+        $comments = $sentence->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
+
+    function addComment($contenido, $puntaje){
+        $sentence = $this->db->prepare("INSERT INTO comentarios(contenido, puntaje) VALUES(?,?)");
+        $sentence->execute(array($contenido, $puntaje));
+        return $this->db->lastInsertId();
+    }
+
+    function updateComment($id_comentario, $contenido, $puntaje){
+        $sentence = $this->db->prepare("UPDATE comentarios SET contenido=?, puntaje=? WHERE id_comentario=?");
+        $sentence->execute(array($contenido, $puntaje, $id_comentario));
+    }
+}

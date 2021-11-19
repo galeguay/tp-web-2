@@ -1,5 +1,8 @@
-body{
+body, input, textarea{
     font-family: 'Staatliches', cursiva;
+}
+
+body{
     font-size: larger;
 }
 
@@ -7,57 +10,100 @@ h1 {
     font-size: 40px;
     color: #685866;
 }
+h3{
+    margin: 10px;
+}
+
+/*TABLA*/
 
 th {
     background-color: grey;
     color: white;
-    }
+}
 
 table, td, tr {
     border: 1px solid black;
     border-collapse: collapse;
-    }
+}
 
 td {
     text-align: center;
     padding: 10px;
 }
 
-
-
 /*DISPLAYS*/
-.flex{
+.flex, .flexCentered, .flexColumna, .flexSpaceBetween, .flexSpaceAround, .flexWrap{
     display: flex;
+    width: 100%;
 }
-
 .flexColumna{
-    display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-
-form{
-    margin-bottom: 20px;
+.flexSpaceBetween{
+    justify-content: space-between;
+}
+.flexSpaceAround{
+    justify-content: space-around;
+}
+.flexWrap{
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.flexCentered{
+    justify-content: center;
 }
 
-.btnBorrar, .btnEditar, .btnAgregar, .btnVer {
+.alignRight{
+    display: flex;
+    justify-content: end;
+}
+
+section{
+    margin: 10px;
+    width: 90%;
+}
+
+form textarea{
+    display: flex;
+    min-height: 200px;
+    width: 80%;
+}
+
+form input,form textarea{
+    display: inline-block;
+    font-size: large;
+    border-radius: 0;
+    border-color: black;
+    margin: 2px;
+}
+
+input[type=submit]{
+    border: none
+}
+
+textarea{
+    resize: none;
+}
+
+.btnBorrar, .btnEditar, .btnAgregar, .btnVerDetalle {
     color: white;
-    padding: 3px;
+    padding: 2px 5px 2px 5px;
     text-align: center;
-    text-decoration: none;
+    display: inline-block;
 }
 .btnBorrar {
-    background-color: red;
+    background-color: rgb(187, 47, 47);
 }
 .btnEditar {
-    background-color: orangered;
+    background-color: rgb(245, 114, 67);
 }
 .btnAgregar {
     background-color: green;
+    font-size: larger;
 }
 .btnVer {
-    background-color: blue;
+    background-color: rgb(74, 74, 138);
 }
 
 
@@ -66,8 +112,8 @@ a{
     font-family: 'Staatliches', cursiva;
 }
 
-a.admin{
-    color: rgb(167, 66, 29);
+nav a.admin{
+    color: rgb(212, 89, 44);
 }
 
 
@@ -81,31 +127,88 @@ a.admin{
     width: 60%;
 }
 
-nav{
-    border-bottom: 2px solid black;
-}
 
-nav a{
-    padding: 10px;
-
-}
 
 header{
     padding-bottom: 30px;
 }
 
-.resaltado{
+/*NAV*/
+nav{
+    border-bottom: 2px solid black;
+    padding-bottom: 2px;
+}
+nav a{
+    padding: 10px;
+}
+.resaltado, nav span.resaltado, nav span.emailUser{
     background-color:  darkred;
     color: white;
-    padding: 5px 5px 0px 5px;
+    padding: 2px 5px 0px 5px;
 }
-
-textarea{
-    resize: none;
+nav span.resaltado{
+    background-color:  darkgreen;
 }
-
-.emailUser{
+nav span.emailUser{
     background-color: rgb(30, 145, 30);
     color: white;
-    padding: 5px 5px 0px 5px;
+}
+
+/*PAGINA CATEGORIAS*/
+.elementoLista{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 2px;
+    width: 60%;
+}
+
+div.tarjetaProducto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    min-width: 200px;
+    border: 1px solid black;
+    padding: 10px 0px 5px 0px;
+    margin: 10px;
+}
+div.nombreProducto{
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    background-color: black;
+    color: white;
+    padding: 2px 5px 2px 5px;
+}
+div.datosProducto{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed;
+    border: 1px dashed;
+    margin: 5px 10% 5px 10%;
+    padding-left: 4px;
+    overflow: unset;
+}
+.btnVerDetalle{
+    background-color: rgb(37, 69, 139);
+}
+section.agregar{
+    width: 70%;
+    border: 1px solid black;
+    padding: 10px 0px 5px 0px;
+}
+section.agregar span{
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    color: white;
+    text-align: center;
+    width: 100%;
+    background-color: #685866;
+    margin-bottom: 5px;
 }

@@ -17,14 +17,18 @@ class AuthHelper{
     //DEVUELVE EL VALOR DEL ROL DE USUARIO:
     //0 PARA INVITADO(USUARIO NO LOGUEADO), 1 PARA USUARIO REGISTRADO Y 2 PARA ADMINISTRADOR
     function getRol(){
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if(isset($_SESSION['rol']))
             return $_SESSION['rol'];
         else return 0;
     }
 
     function getUserEmail(){
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if(isset($_SESSION['email']))
             return $_SESSION['email'];
         else return 0;

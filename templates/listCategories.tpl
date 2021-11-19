@@ -1,40 +1,30 @@
-{include file="header.tpl" title=$category->nombre}
+{include file="header.tpl" title="Categorias"}
 <div class="flexColumna">
-    <h1>Tabla de Categorías</h1>
+    <h1>Categorías</h1>
+    <section class="flexColumna">
+    {foreach from=$categories item=$category}
+        <div class="elementoLista">
+            {$category->nombre}
+            <div>
+                <a href ="category/{$category->id_categoria}" class="btnVerDetalle">VER PRODUCTOS</a>
+                {if $userRol == 2}
+                    <a href="editCategory/{$category->id_categoria}" class="btnEditar">EDITAR</a>
+                    <a href="deleteCategory/{$category->id_categoria}" class="btnBorrar">BORRAR</a>
+                {/if}
+            </div>
+        </div>
+    {/foreach}
+    </section>
     {if $userRol == 2}
-        <h3>Agregar categoria:</h3>
-        <div>
+        <section class="agregar">
+        <div class="flexColumna">
+            <span>Agregar categoria:</span>
             <form action="addCategory" method="POST">
                 <input type="text" name="nombre" placeholder="Nombre">
-                <input type="submit" id="btnAgregar" value="Agregar">
+                <input type="submit" class="btnAgregar" value="Agregar">
             </form>
         </div>
+        </section>
     {/if}
-    <table>
-        <thead>
-            <tr>
-                <th>NOMBRE</th>
-                {if $userRol == 2}
-                    <th>ADMINISTRAR</th>
-                {else}
-                    <th></th>
-                {/if}
-            </tr>
-        </thead>
-        <tbody>
-            {foreach from=$categories item=$category}
-                <tr>
-                    <td>{$category->nombre}</td>
-                    <td><a href ="category/{$category->id_categoria}" class="btnVer">VER PRODUCTOS</a>
-                    {if $userRol == 2}
-                        <a href="editCategory/{$category->id_categoria}" class="btnEditar">EDITAR</a>
-                        <a href="deleteCategory/{$category->id_categoria}" class="btnBorrar">BORRAR</a></td>
-                    {else}
-                        </td></tr>
-                    {/if}
-                </tr>
-            {/foreach}
-        </tbody>
-    </table>
 </div>
 {include file="footer.tpl"}
