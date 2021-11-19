@@ -12,8 +12,17 @@ class ApiController{
     public function getComments($params = null){
         $comments = $this->model->getComments();
         $this->view->response($comments, 200);
-        $this->viewComment->renderComments($comments);
     }
+
+    public function getComment($idComment){
+        $comment = $this->model->getComment($idComment);
+        $this->view->response($comment, 200);
+    }
+
+    public function deleteComment($idComment){
+        $this->model->deleteComment($idComment);
+    }
+
 
 
 

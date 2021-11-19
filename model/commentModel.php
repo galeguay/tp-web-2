@@ -14,4 +14,16 @@ class CommentModel{
         $comments = $sentence->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }
+
+    function getComment($idComment){
+        $sentence = $this->db->prepare("SELECT * FROM comentarios WHERE id_categoria=?");
+        $sentence->execute($idComment);
+        $comment = $sentence->fetch(PDO::FETCH_OBJ);
+        return $comment;
+    }
+
+    function deleteComment($idComment){
+        $sentence = $this->db->prepare("DELETE FROM comentarios WHERE id_categoria=?");
+        $sentence->execute();
+    }
 }

@@ -59,9 +59,6 @@ switch ($params[0]) {
         $userController->showError($mensaje);
     break;
 
-
-
-
     case 'categories':
         $categoryController->showCategories();
         break;

@@ -1,4 +1,4 @@
-{include file="header.tpl" title=$category->nombre}
+{include file="header.tpl" title="Categoria"}
 <div class="flexColumna">
     <h1>Tabla de Categorías</h1>
     {if $userRol == 2}
