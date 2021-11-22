@@ -26,7 +26,6 @@ class ProductView{
         $this->smarty->assign('product', $product);
         $this->smarty->assign('userRol', $this->authHelper->getRol());
         $this->smarty->assign('userEmail', $this->authHelper->getUserEmail());
-        //$this->smarty->assign('comment', $comment);
         $this->smarty->display('templates/product.tpl');
     }
 

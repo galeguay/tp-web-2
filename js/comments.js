@@ -2,14 +2,16 @@
 
 const ApiURL = "api/comments";
 
-let idProduct = document.querySelector("#nombreProducto").dataset.idProduct;
-
+let idProduct = document.querySelector("#nombreProducto").dataset.id;
 let formComments = document.querySelector("#formComentario");
-formComments.addEventListener("click", e =>{
+formComments.addEventListener("submit", e =>{
+    e.preventDefault();
     let dataForm = new FormData(formComments);
     let comment = {
-        contenido: dataForm.contenido,
-        puntaje: dataForm.puntaje,
+        id_usuario: idProduct,
+        contenido: dataForm.get("contenido"),
+        puntaje: dataForm.get("puntaje"),
+        id_producto: idProduct,
     }
     saveComment(comment);
 });

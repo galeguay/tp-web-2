@@ -29,9 +29,9 @@ class CommentModel{
         $sentence->execute();
     }
 
-    function addComment($contenido, $puntaje){
-        $sentence = $this->db->prepare("INSERT INTO comentarios(contenido, puntaje) VALUES(?,?)");
-        $sentence->execute(array($contenido, $puntaje));
+    function addComment($contenido, $puntaje, $idProducto){
+        $sentence = $this->db->prepare("INSERT INTO comentarios(contenido, puntaje, id_producto) VALUES(?,?,?)");
+        $sentence->execute(array($contenido, $puntaje, $idProducto));
         return $this->db->lastInsertId();
     }
 
