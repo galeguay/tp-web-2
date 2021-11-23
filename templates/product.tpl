@@ -1,6 +1,6 @@
 {include file="header.tpl" title=$product->nombre}
 <div class="flexColumna">
-        <h1 id="nombreProducto" data-id="{$product->id_producto}">{$product->nombre}</h1>
+        <h1 id="nombreProducto" data-id="{$product->id_producto}" data-rol="{$userRol}">{$product->nombre}</h1>
     <section class="producto">
         <p><span class="resaltado">DESCRIPCIÓN:</span> {$product->descripcion}</p>
         <div class="flexSpaceAround">
@@ -9,16 +9,15 @@
         </div>
     </section>
     <section class="comentarios">
-    <div class="flexWrap">
-        <p><span class="resaltadoComentario">COMENTARIOS</span></p>
-        {include file="vue/commentsList.tpl"}
-    </div>
+            <span class="resaltadoComentario">COMENTARIOS SOBRE EL PRODUCTO</span>
+            {include file="vue/commentsList.tpl"}
     </section>
+    {if $userRol > 0}
     <section class="comentario">
         <form id="formComentario">
             <div class="flexSpaceAround">
                 <!--<label for="contenido">Contenido del comentario</label>-->
-                <textarea class="comentario" name="contenido" placeholder="Comentario..."></textarea>
+                <textarea class="comentario" name="contenido" placeholder="Comentario..." maxlength="300"></textarea>
                     <div class="columnaComentario">
                 <label for="puntaje">Puntaje</label>
                     <p class="puntuacion">
@@ -38,6 +37,7 @@
             </div>
         </form>
     </section>
+    {/if}
 </div>
 <script type="text/javascript" src="js/comments.js"></script>
 {include file="footer.tpl"}

@@ -17,12 +17,11 @@ class UserController{
     //VERIFICA LOS CAMPOS PASADOS POR POST EMAIL Y CONTRASEÑA PARA INICIAR SESION
     function startSession(){
         $this->authHelper->checkLoggedIn();
-        if(isset($_POST['email']) && isset($_POST['pass'])){
+        if(isset($_POST['email']) && isset($_POST['pass']) && !empty($_POST['email'] && !empty($_POST['pass']))){
             if($this->serverStartSession($_POST['email'], $_POST['pass'])){
                 header("Location: ".BASE_URL."home");
             } else{
-                $rol = $this->authHelper->getRol();
-                $this->view->renderLogIn($rol);
+                $this->view->renderLogIn();
             }
         }
     }
@@ -43,9 +42,8 @@ class UserController{
     function showLogIn(){
         if ($this->authHelper->isLoggedIn())
             $this->view->renderError("Ya estás logueado");
-        else{
-            $this->view->renderLogIn(); //si no inicio seción el valor de rol de usuario es 0
-        }
+        else
+            $this->view->renderLogIn();
     }
 
     //RENDERIZA LA PAGINA CON LISTA DE USUARIOS (SOLO ADMINISTRADOR)
@@ -57,7 +55,10 @@ class UserController{
 
     //LLEVA A LA PAGINA DE REGISTRO DE USUARIO
     function showRegister(){
-        $this->view->renderRegister();
+        if ($this->authHelper->isLoggedIn())
+            $this->view->renderError("Ya estás registrado y logueado");
+        else
+            $this->view->renderRegister();
     }
 
     function showError($mensaje){
@@ -66,6 +67,8 @@ class UserController{
 
     //CIERRA SESIÓN
     function logOut(){
+        if (!$this->authHelper->isLoggedIn())
+            $this->view->renderError("No iniciaste sesión");
         $this->authHelper->logOut();
     }
 
@@ -78,17 +81,17 @@ class UserController{
                 $this->model->addUser($_POST['nombre'], $_POST['email'], $passCrypted);
                 $this->startSession($_POST['email'], $pass);
                 header("Location: ".BASE_URL."home");
-            }//ver de mostrar error de campos vacio
-        }//ver de mostrar error de campos vacio
+            }$this->view->renderError("Algún campo está vacío");
+        }
     }
 
     //MODIFICA EL ROL DEL USUARIO
     function modifyUserRol($idUsuario){
         $this->authHelper->checkAdmin();
-        if(isset($_POST['rol']) && $idUsuario){
+        if(isset($_POST['rol']) && !empty($_POST['rol']) && $idUsuario){
             $this->model->modifyUserRol($idUsuario, $_POST['rol']);
             header("Location: ".BASE_URL."users");
-        }else echo "ERROR: no se estableció el rol";
+        }$this->view->renderError("No se estableció el rol");
     }
 
     function deleteUser($id){

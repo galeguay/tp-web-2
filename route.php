@@ -84,7 +84,7 @@ switch ($params[0]) {
 
     //ACTUALIZA LOS CAMPOS DE LA CATEGORIA EN LA BD
     case 'updateCategory':
-        $categoryController->updateCategoryToDB($params[1],$_POST['nombre']);
+        $categoryController->updateCategory($params[1]);
     break;
 
     case 'products':

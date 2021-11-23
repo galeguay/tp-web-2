@@ -3,18 +3,21 @@
 const ApiURL = "api/comments";
 
 let idProduct = document.querySelector("#nombreProducto").dataset.id;
-let formComments = document.querySelector("#formComentario");
-formComments.addEventListener("submit", e =>{
-    e.preventDefault();
-    let dataForm = new FormData(formComments);
-    let comment = {
-        id_usuario: idProduct,
-        contenido: dataForm.get("contenido"),
-        puntaje: dataForm.get("puntaje"),
-        id_producto: idProduct,
-    }
-    saveComment(comment);
-});
+let userRol = document.querySelector("#nombreProducto").dataset.rol;
+
+if (userRol > 0){ //Si no es un usuario registrado en el tpl no estaría el formulario
+    let formComments = document.querySelector("#formComentario");
+    formComments.addEventListener("submit", e =>{
+        e.preventDefault();
+        let dataForm = new FormData(formComments);
+        let comment = {
+            contenido: dataForm.get("contenido"),
+            puntaje: dataForm.get("puntaje"),
+            id_producto: idProduct,
+        }
+        saveComment(comment);
+    });
+}
 
 async function saveComment(comment){
     try{
@@ -36,9 +39,14 @@ let app = new Vue({
     el: "#commentsVue",
     data: {
         comments: [],
+        userRol: userRol
+    },
+    methods:{
+        deleteComment: function(id) {
+            deleteComment(id)
+        }
     }
 });
-
 
 async function getComments(idProduct){
     //fetch para traer los comentarios
@@ -46,15 +54,22 @@ async function getComments(idProduct){
         let response = await fetch (ApiURL + "/" + idProduct);
         let comments = await response.json();
 
-        app.comments = comments;
+        if (response.ok){
+            app.comments = comments;
+        }
     } catch (e) {
         console.log(e);
     }
 }
+
+async function deleteComment(idComment){
+    let response = await fetch (ApiURL + "/" + idComment,{
+        method : "DELETE",
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if(response.ok){
+        getComments(idProduct);
+    }
+}
+
 getComments(idProduct);
-
-
-
-
-
-

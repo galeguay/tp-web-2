@@ -1,6 +1,6 @@
 <?php
 
-class CommentModel{
+class CommentsModel{
 
     private $db;
 
@@ -18,26 +18,22 @@ class CommentModel{
     }
 
     function getComment($idComment){
-        $sentence = $this->db->prepare("SELECT * FROM comentarios WHERE id_categoria=?");
-        $sentence->execute($idComment);
+        $sentence = $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario=?");
+        $sentence->execute(array($idComment));
         $comment = $sentence->fetch(PDO::FETCH_OBJ);
         return $comment;
     }
 
     function deleteComment($idComment){
-        $sentence = $this->db->prepare("DELETE FROM comentarios WHERE id_categoria=?");
-        $sentence->execute();
+        $sentence = $this->db->prepare("DELETE FROM comentarios WHERE id_comentario=?");
+        $sentence->execute(array($idComment));
+        return $sentence->rowCount();
     }
 
     function addComment($contenido, $puntaje, $idProducto){
         $sentence = $this->db->prepare("INSERT INTO comentarios(contenido, puntaje, id_producto) VALUES(?,?,?)");
         $sentence->execute(array($contenido, $puntaje, $idProducto));
         return $this->db->lastInsertId();
-    }
-
-    function updateComment($id_comentario, $contenido, $puntaje){
-        $sentence = $this->db->prepare("UPDATE comentarios SET contenido=?, puntaje=? WHERE id_comentario=?");
-        $sentence->execute(array($contenido, $puntaje, $id_comentario));
     }
 
 }

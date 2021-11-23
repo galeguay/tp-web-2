@@ -23,15 +23,9 @@ class CategoryController{
         $category = $this->model->getCategory($id);
         $this->view->renderCategory($category);
     }
-/*
-    function showCategoriesAsAdmin(){
-        $this->authHelper->checkLoggedIn();
-        $categories = $this->model->getCategories();
-        $this->view->renderCategories($categories);
-    }
-*/
+
     function showEditCategory($id){
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->checkAdmin();
         $category = $this->model->getCategory($id);
         $this->view->renderEditCategory($category);
     }
@@ -47,23 +41,23 @@ class CategoryController{
     }
 
     function addCategory(){
-        $this->authHelper->checkLoggedIn();
-        if(isset($_POST['nombre'])){
+        $this->authHelper->checkAdmin();
+        if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
             $this->model->addCategory($_POST['nombre']);
             header("Location: ".BASE_URL."categories");
         }
     }
 
-    function updateCategoryToDB($id_categoria){
-        $this->authHelper->checkLoggedIn();
-        if(isset($_POST['nombre'])){
+    function updateCategory($id_categoria){
+        $this->authHelper->checkAdmin();
+        if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
             $this->model->updateCategoryToDB($id_categoria, $_POST['nombre']);
             header("Location: ".BASE_URL."categories");
         }
     }
 
     function deleteCategory($id_category){
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->checkAdmin();
         $this->model->deleteCategory($id_category);
         header("Location: ".BASE_URL."categories");
     }

@@ -78,6 +78,7 @@ textarea{
 }
 
 .btnBorrar, .btnEditar, .btnAgregar, .btnVerDetalle, .btnIniciarSesion, .btnRegistrarse {
+    cursor: pointer;
     color: white;
     padding: 2px 5px 2px 5px;
     text-align: center;
@@ -251,7 +252,6 @@ input[type = "radio"]{
 }
 
 section.comentario{
-    width: 70%;
     border: 1px solid black;
     padding: 10px;
 }
@@ -284,22 +284,38 @@ section.producto{
     flex-direction: column;
 }
 span.resaltadoComentario{
-    background-color: yellow;
+    font-size: x-large;
+    background-color: lightblue;
     color: black;
     padding: 2px 5px 0px 5px;
 }
 section.comentarios{
-    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 div.comentario{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    background-color: rgb(225, 239, 252);
     align-items: center;
-    border: 1px solid black;
-    
+    border: 1px solid rgb(225, 239, 252);
     padding: 5px;
     margin: 2px;
-    width: 60%;
+}
+div.comentario .puntaje, span.estrella{
+    font-size: xx-large;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 2px;
+    }
+div.comentario .contenido{
+    margin: 10px;
+    max-width: 500px;
+}
+span.estrella{
+    color: orange;
 }

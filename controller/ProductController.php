@@ -19,13 +19,7 @@ class ProductController{
         $products = $this->model->getProducts();
         $this->view->renderProducts($products, $categories);
     }
-/*
-    function showProductsAsAdmin($categories){
-        $this->authHelper->checkLoggedIn();
-        $products = $this->model->getProducts();
-        $this->view->renderProducts($products, $categories);
-    }
-*/
+
     function showProductsByCategory($id_category, $categories){
         $products = $this->model->getProductsCategory($id_category);
         $this->view->renderProducts($products, $categories);
@@ -37,29 +31,34 @@ class ProductController{
     }
 
     function showEditProduct($id_product, $categories){
+        $this->authHelper->checkAdmin();
         $product = $this->model->getProduct($id_product);
         $this->view->renderEditProduct($product, $categories);
     }
 
     function addProduct(){
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->checkAdmin();
         if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
-            $this->model->addProductToDB($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria']);
-            header("Location: ".BASE_URL."products");
+            if(!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['contenido']) && !empty($_POST['id_categoria'])){
+                $this->model->addProductToDB($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria']);
+                header("Location: ".BASE_URL."products");
+            }
         }
     }
 
     function deleteProduct($id_producto){
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->checkAdmin();
         $this->model->deleteProductFromDB($id_producto);
         header("Location: ".BASE_URL."products");
     }
 
     function updateProduct($id_producto){
-        $this->authHelper->checkLoggedIn();
+        $this->authHelper->checkAdmin();
         if(isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['contenido']) && isset($_POST['id_categoria'])){
-            $this->model->updateProduct($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria'], $id_producto);
-            header("Location: ".BASE_URL."products");
+            if(!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['contenido']) && !empty($_POST['id_categoria'])){
+                $this->model->updateProduct($_POST['nombre'], $_POST['descripcion'], $_POST['contenido'], $_POST['id_categoria'], $id_producto);
+                header("Location: ".BASE_URL."products");
+            }
         }
     }
 
