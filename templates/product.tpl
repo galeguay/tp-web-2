@@ -17,7 +17,7 @@
                             <option value="fecha" selected>Fecha y hora</option>
                             <option value="estrellas">Estrellas</option>
                         </select>
-                        <select name="asc">
+                        <select name="typeOrder">
                             <option value="asc" selected>Ascendente</option>
                             <option value="desc">Descendente</option>
                         </select>
@@ -65,7 +65,4 @@
     {/if}
 </div>
 <script type="text/javascript" src="js/comments.js"></script>
-{if $userRol > 0}
-<script type="text/javascript" src="js/formAddComment.js"></script>
-{/if}
 {include file="footer.tpl"}

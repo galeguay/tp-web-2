@@ -29,7 +29,7 @@
                         </select>
                         <input type="submit" value="MODIFICAR" class="btnEditar">
                     </form>
-                    <td><a href ="deleteUser/{$user->id_usuario}" class="btnBorrar">ELIMINAR</a></td>
+                    <td><a href ="deleteUser/{$user->email}" class="btnBorrar">ELIMINAR</a></td>
                 </tr>
             {/foreach}
         </tbody>

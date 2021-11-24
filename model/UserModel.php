@@ -37,8 +37,8 @@ class UserModel{
         return $users;
     }
 
-    function deleteUserFromDB($idUsuario){
-        $sentence = $this->db->prepare("DELETE FROM `usuarios` WHERE id_usuario=?");
-        $sentence->execute(array($idUsuario));
+    function deleteUserFromDB($userEmail){
+        $sentence = $this->db->prepare("DELETE FROM `usuarios` WHERE email=?");
+        $sentence->execute(array($userEmail));
     }
 }

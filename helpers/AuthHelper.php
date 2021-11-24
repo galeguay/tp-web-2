@@ -34,6 +34,15 @@ class AuthHelper{
         else return 0;
     }
 
+    function getUserId(){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(isset($_SESSION['id']))
+            return $_SESSION['id'];
+        else return -1;
+    }
+
     function isLoggedIn(){
         session_start();
         if(isset($_SESSION["email"]))
@@ -45,6 +54,7 @@ class AuthHelper{
     function logOut(){
         session_start();
         session_destroy();
+        header("Location: ".BASE_URL."logIn");
     }
 
 }

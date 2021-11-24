@@ -4,7 +4,7 @@ const ApiURL = "api/comments";
 
 let idProduct = document.querySelector("#nombreProducto").dataset.id;
 let userRol = document.querySelector("#nombreProducto").dataset.rol;
-let orderComments = "?orderBy=fecha&asc=asc";
+let orderComments = "?orderBy=fecha&typeOrder=asc";
 let filter = "";
 
 let app = new Vue({
@@ -20,6 +20,7 @@ let app = new Vue({
     }
 });
 
+//OBTIENE LOS COMENTARIOS A TRAVES DE LA API
 async function getComments(idProduct){
     try {
         let response = await fetch (ApiURL + "/" + idProduct + orderComments + filter);
@@ -33,6 +34,7 @@ async function getComments(idProduct){
     }
 }
 
+//ELIMINA EL COMENTARIO A TRAVES DE LA API
 async function deleteComment(idComment){
     let response = await fetch (ApiURL + "/" + idComment,{
         method : "DELETE",
@@ -43,30 +45,56 @@ async function deleteComment(idComment){
     }
 }
 
-//ESTABLECER ORDEN COMENTARIOS
+//ESTABLECE EL ORDEN EN LA LISTA COMENTARIOS
 let formOrder = document.querySelector("#formOrder");
 formOrder.addEventListener("submit", e=>{
     e.preventDefault();
     let data = new FormData(formOrder);
     let newOrder = "?orderBy="+data.get("orderBy");
-    //if (data.get("asc") != "")
-    newOrder +="&asc="+data.get("asc");
+    newOrder +="&typeOrder="+data.get("asc");
     orderComments = newOrder;
     getComments(idProduct);
 })
 
-//ESTABLECER FILTRO ESTRELLAS COMENTARIOS
+//ESTABLECE EL FILTRO ESTRELLAS COMENTARIOS
 let formFilter = document.querySelector("#formFilter");
 formFilter.addEventListener("submit", e=>{
     e.preventDefault();
     let data = new FormData(formFilter);
     if (data.get("estrellas") != ""){
-        let newFilter ="?estrellas="+data.get("estrellas");
+        let newFilter ="&estrellas="+data.get("estrellas");
         filter = newFilter;
     }
     getComments(idProduct);
-})
+});
 
+//TOMA LOS DATOS CARGADOS EN EL FORMULARIO PARA AGREGAR UN COMENTARIO
+let formComments = document.querySelector("#formComentario");
+formComments.addEventListener("submit", e =>{
+    e.preventDefault();
+    let dataForm = new FormData(formComments);
+    let comment = {
+        contenido: dataForm.get("contenido"),
+        puntaje: dataForm.get("puntaje"),
+        id_producto: idProduct,
+    }
+    saveComment(comment);
+});
 
+//GUARDA A TRAVES DE LA API EL COMENTARIO PASADO POR PARAMETRO
+async function saveComment(comment){
+    try{
+        let response = await fetch(ApiURL,{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(comment) //stringfy lo convierte a string
+        })
+        if (response.ok){
+            getComments(idProduct);
+        }
+    }catch(error){
+        console.log(error);
+    }
+}
 
 getComments(idProduct);

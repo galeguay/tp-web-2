@@ -32,7 +32,6 @@ switch ($params[0]) {
 
     case 'logOut':
         $userController->logOut();
-        header("Location: ".BASE_URL."home");
         break;
 
     case 'modifyUserRol':

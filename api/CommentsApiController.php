@@ -12,33 +12,32 @@ class CommentsApiController extends ApiController{
 
     public function getComments($params = null){
         $idProduct = $params[':ID'];
-        if($this->model->getComments($idProduct)){
-            $orderBy = "id";
-            if (isset($_GET["orderBy"]) && !empty($_GET["orderBy"])){
-                $orderBy = $_GET["orderBy"];
-            }
-            if (isset($_GET["asc"]) && !empty($_GET["asc"])){
-                if ($_GET["asc"] == "asc")
-                    $asc = true;
-                else
-                    $asc = false;
-                $comments = $this->model->getComments($idProduct, $orderBy, $asc);
-            }else
-                $comments = $this->model->getComments($idProduct, $orderBy);
-            $this->view->response($comments, 200);
-        }else
-            $this->view->response("No hay comentarios para este producto", 404);
+        $filtroEstrellas = "";
+        $orderBy = "";
+        $typeOrderAsc = false;
+        if (isset($_GET["estrellas"]) && !empty($_GET["estrellas"])){ //chequea si se estableció el filtro de cantidad de estrellas
+            $filtroEstrellas = $_GET["estrellas"];
+        }
+        if (isset($_GET["orderBy"]) && !empty($_GET["orderBy"])){ //chequea si se estableció el criterio de orden
+            $orderBy = $_GET["orderBy"];
+        }
+        if (isset($_GET["typeOrder"]) && !empty($_GET["typeOrder"])){ //chequea si se estableció si es ascendente o descendente el orden
+            if ($_GET["typeOrder"] == "asc")
+                $typeOrderAsc = true;
+        }
+        $comments = $this->model->getCommentsFromDB($idProduct, $orderBy, $typeOrderAsc, $filtroEstrellas);
+        $this->view->response($comments, 200);
     }
 
     public function getComment($params = null){
         $idComment = $params[':ID'];
-        $comment = $this->model->getComment($idComment);
+        $comment = $this->model->getCommentFromDB($idComment);
         $this->view->response($comment, 200);
     }
 
     public function deleteComment($params = null){
         $idComment = $params[':ID'];
-        if($this->model->getComment($idComment)){
+        if($this->model->getCommentFromDB($idComment)){
         $result = $this->model->deleteComment($idComment);
             if($result > 0){
                 return $this->view->response("El comentario se eliminó correctamente" , 200);

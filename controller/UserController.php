@@ -32,6 +32,7 @@ class UserController{
         $user = $this->model->getUser($userEmail);
         if($user && password_verify($pass ,($user->contraseña))){
             session_start();
+            $_SESSION ['id'] = $user->id_usuario;
             $_SESSION ['email'] = $userEmail;
             $_SESSION ['rol'] = $user->rol;
             return true;
@@ -69,19 +70,24 @@ class UserController{
     function logOut(){
         if (!$this->authHelper->isLoggedIn())
             $this->view->renderError("No iniciaste sesión");
-        $this->authHelper->logOut();
+        else
+            $this->authHelper->logOut();
     }
 
     //REGISTRA UN NUEVO USUARIO EN LA BD
     function addUser(){
         if(isset($_POST['nombre']) && isset($_POST['email']) && isset($_POST['pass'])){
             if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['pass'])){
-                $pass = $_POST['pass'];
-                $passCrypted = password_hash($_POST['pass'], PASSWORD_BCRYPT);
-                $this->model->addUser($_POST['nombre'], $_POST['email'], $passCrypted);
-                $this->startSession($_POST['email'], $pass);
-                header("Location: ".BASE_URL."home");
-            }$this->view->renderError("Algún campo está vacío");
+                if(!$this->model->getUser($_POST['email'])){
+                    $pass = $_POST['pass'];
+                    $passCrypted = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+                    $this->model->addUser($_POST['nombre'], $_POST['email'], $passCrypted);
+                    $this->startSession($_POST['email'], $pass);
+                    header("Location: ".BASE_URL."home");
+                }else
+                    $this->view->renderError("Ya existe un usuario con ese email");
+            }else
+                $this->view->renderError("Algún campo está vacío");
         }
     }
 
@@ -90,14 +96,24 @@ class UserController{
         $this->authHelper->checkAdmin();
         if(isset($_POST['rol']) && !empty($_POST['rol']) && $idUsuario){
             $this->model->modifyUserRol($idUsuario, $_POST['rol']);
-            header("Location: ".BASE_URL."users");
-        }$this->view->renderError("No se estableció el rol");
+            if($this->authHelper->getUserId() == $idUsuario) //chequea que si el usuario al que se modifica el rol es el mismo q esta logueado se cierra la sesión
+                $this->authHelper->logOut();
+            else
+                header("Location: ".BASE_URL."users");
+        }else
+            $this->view->renderError("No se estableció el rol");
     }
 
-    function deleteUser($id){
+    function deleteUser($email){
         $this->authHelper->checkAdmin();
-        $this->model->deleteUserFromDB($id);
-        header("Location: ".BASE_URL."users");
+        if($this->model->getUser($email)){ //chequeo si el usuario existe
+            $this->model->deleteUserFromDB($email);
+            if($this->authHelper->getUserEmail() == $email) //si es el mismo usuario que cierre sesion
+                $this->authHelper->logOut();
+            else
+                header("Location: ".BASE_URL."users");
+        }else
+            $this->view->renderError("No existe el usuario");
     }
 
 }
