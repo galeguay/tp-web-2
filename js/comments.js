@@ -4,36 +4,8 @@ const ApiURL = "api/comments";
 
 let idProduct = document.querySelector("#nombreProducto").dataset.id;
 let userRol = document.querySelector("#nombreProducto").dataset.rol;
-
-if (userRol > 0){ //Si no es un usuario registrado en el tpl no estaría el formulario
-    let formComments = document.querySelector("#formComentario");
-    formComments.addEventListener("submit", e =>{
-        e.preventDefault();
-        let dataForm = new FormData(formComments);
-        let comment = {
-            contenido: dataForm.get("contenido"),
-            puntaje: dataForm.get("puntaje"),
-            id_producto: idProduct,
-        }
-        saveComment(comment);
-    });
-}
-
-async function saveComment(comment){
-    try{
-        let response = await fetch(ApiURL,{
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(comment) //stringfy lo convierte a string
-        })
-        if (response.ok){
-            getComments(idProduct);
-        }
-    }catch(error){
-        console.log(error);
-    }
-}
-
+let orderComments = "?orderBy=fecha&asc=asc";
+let filter = "";
 
 let app = new Vue({
     el: "#commentsVue",
@@ -49,11 +21,10 @@ let app = new Vue({
 });
 
 async function getComments(idProduct){
-    //fetch para traer los comentarios
     try {
-        let response = await fetch (ApiURL + "/" + idProduct);
+        let response = await fetch (ApiURL + "/" + idProduct + orderComments + filter);
+        console.log(ApiURL + "/" + idProduct + orderComments + filter);
         let comments = await response.json();
-
         if (response.ok){
             app.comments = comments;
         }
@@ -71,5 +42,31 @@ async function deleteComment(idComment){
         getComments(idProduct);
     }
 }
+
+//ESTABLECER ORDEN COMENTARIOS
+let formOrder = document.querySelector("#formOrder");
+formOrder.addEventListener("submit", e=>{
+    e.preventDefault();
+    let data = new FormData(formOrder);
+    let newOrder = "?orderBy="+data.get("orderBy");
+    //if (data.get("asc") != "")
+    newOrder +="&asc="+data.get("asc");
+    orderComments = newOrder;
+    getComments(idProduct);
+})
+
+//ESTABLECER FILTRO ESTRELLAS COMENTARIOS
+let formFilter = document.querySelector("#formFilter");
+formFilter.addEventListener("submit", e=>{
+    e.preventDefault();
+    let data = new FormData(formFilter);
+    if (data.get("estrellas") != ""){
+        let newFilter ="?estrellas="+data.get("estrellas");
+        filter = newFilter;
+    }
+    getComments(idProduct);
+})
+
+
 
 getComments(idProduct);

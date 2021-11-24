@@ -28,7 +28,7 @@ h3{
 
 
 /*DISPLAYS*/
-.flex, .flexColumna, .flexSpaceBetween, .flexSpaceAround, .flexWrap{
+.flex, .flexLeft, .flexColumna, .flexSpaceBetween, .flexSpaceAround, .flexWrap{
     display: flex;
     width: 100%;
 }
@@ -45,6 +45,10 @@ h3{
 .flexWrap{
     justify-content: center;
     flex-wrap: wrap;
+}
+.flexLeft{
+    justify-content: left;
+    align-items: center;
 }
 
 section{
@@ -243,17 +247,19 @@ section.agregar span{
 .puntuacion label:hover ~ label{
     color:orange;
 }
-input[type = "radio"]:checked ~ label{
+
+.puntuacion input[type = "radio"]:checked ~ label{
     color:orange;
 }
 
-input[type = "radio"]{ 
+.puntuacion input[type = "radio"]{ 
     display:none;
 }
 
-section.comentario{
+section.addComentario{
     border: 1px solid black;
     padding: 10px;
+    max-width: 70%;
 }
 
 .puntuacion{
@@ -294,28 +300,43 @@ section.comentarios{
     flex-direction: column;
     align-items: center;
 }
-
+div.encabezadoComentarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    width: 70%;
+    padding: 5px;
+}
 div.comentario{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     background-color: rgb(225, 239, 252);
     align-items: center;
     border: 1px solid rgb(225, 239, 252);
     padding: 5px;
     margin: 2px;
+    max-width: 700px;
 }
-div.comentario .puntaje, span.estrella{
+.puntaje, span.estrella{
     font-size: xx-large;
     background-color: white;
     border-radius: 10px;
     border: 1px solid white;
     padding: 2px;
-    }
-div.comentario .contenido{
+}
+.puntaje{
+    min-width:max-content;
+}
+div.comentario, .contenido{
     margin: 10px;
-    max-width: 500px;
 }
 span.estrella{
     color: orange;
+}
+.fechaComenterio{
+    display: flex;
+    font-size: medium;
+    color:#685866;
 }

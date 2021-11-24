@@ -9,17 +9,42 @@
         </div>
     </section>
     <section class="comentarios">
-            <span class="resaltadoComentario">COMENTARIOS SOBRE EL PRODUCTO</span>
+            <div class="encabezadoComentarios">
+                <span class="resaltadoComentario">COMENTARIOS SOBRE EL PRODUCTO</span>
+                <div class="flexSpaceAround">
+                    <form id="formOrder">
+                        <select name="orderBy">
+                            <option value="fecha" selected>Fecha y hora</option>
+                            <option value="estrellas">Estrellas</option>
+                        </select>
+                        <select name="asc">
+                            <option value="asc" selected>Ascendente</option>
+                            <option value="desc">Descendente</option>
+                        </select>
+                        <input type="submit" class="btnEditar" value="Ordenar">
+                    </form>
+                    <form id="formFilter">
+                        <label for="estrellas">Estrellas:</label>
+                        <select name="estrellas">
+                            <option value="5" selected>5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                        <input type="submit" class="btnEditar" value="Filtrar">
+                    </form>
+                </div>
+            </div>
             {include file="vue/commentsList.tpl"}
     </section>
     {if $userRol > 0}
-    <section class="comentario">
+    <section class="addComentario">
         <form id="formComentario">
             <div class="flexSpaceAround">
-                <!--<label for="contenido">Contenido del comentario</label>-->
                 <textarea class="comentario" name="contenido" placeholder="Comentario..." maxlength="300"></textarea>
-                    <div class="columnaComentario">
-                <label for="puntaje">Puntaje</label>
+                <div class="columnaComentario">
+                    <label for="puntaje">Puntaje</label>
                     <p class="puntuacion">
                         <input id="radio1" type="radio" name="puntaje" value="5"><!--
                         --><label for="radio1">★</label><!--
@@ -40,4 +65,7 @@
     {/if}
 </div>
 <script type="text/javascript" src="js/comments.js"></script>
+{if $userRol > 0}
+<script type="text/javascript" src="js/formAddComment.js"></script>
+{/if}
 {include file="footer.tpl"}
