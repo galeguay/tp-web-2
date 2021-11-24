@@ -57,8 +57,7 @@ formOrder.addEventListener("submit", e=>{
 })
 
 //ESTABLECE EL FILTRO ESTRELLAS COMENTARIOS
-let formFilter = document.querySelector("#formFilter");
-formFilter.addEventListener("submit", e=>{
+document.querySelector("#formFilter").addEventListener("submit", e=>{
     e.preventDefault();
     let data = new FormData(formFilter);
     if (data.get("estrellas") != ""){
@@ -68,9 +67,15 @@ formFilter.addEventListener("submit", e=>{
     getComments(idProduct);
 });
 
+//QUITA FILTRO DE ESTRELLAS
+document.querySelector("#btnNotFilter").addEventListener("click", e=>{
+    filter = "";
+    getComments(idProduct);
+})
+
+
 //TOMA LOS DATOS CARGADOS EN EL FORMULARIO PARA AGREGAR UN COMENTARIO
-let formComments = document.querySelector("#formComentario");
-formComments.addEventListener("submit", e =>{
+document.querySelector("#formComentario").addEventListener("submit", e =>{
     e.preventDefault();
     let dataForm = new FormData(formComments);
     let comment = {

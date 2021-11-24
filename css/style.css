@@ -156,7 +156,7 @@ nav{
 nav a{
     padding: 10px;
 }
-nav a.admin{
+nav a.admin, h3{
     color: darkgreen;
 }
 nav span.resaltado{
@@ -339,4 +339,7 @@ span.estrella{
     display: flex;
     font-size: medium;
     color:#685866;
+}
+a.btnEditar, a.btnBorrar{
+    font-size: large;
 }

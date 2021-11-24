@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-11-2021 a las 16:10:29
+-- Tiempo de generación: 24-11-2021 a las 17:44:14
 -- Versión del servidor: 10.3.31-MariaDB-0+deb10u1
 -- Versión de PHP: 7.3.31-1~deb10u1
 
@@ -62,7 +62,14 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `contenido`, `puntaje`, `id_producto`, `fecha_y_hora`) VALUES
-(39, 'asdfasdf s dfasdf asd fasd f', 4, 28, '2021-11-24 16:04:37');
+(39, 'asdfasdf s dfasdf asd fasd f', 4, 28, '2021-11-24 16:04:37'),
+(40, 'muy rica recomendablee 100%', 5, 27, '2021-11-24 16:56:21'),
+(41, 'muy buena alternativa para salir de las cervezas comunes', 3, 27, '2021-11-24 16:57:29'),
+(42, 'prefiero la quilmess de siempree', 1, 27, '2021-11-24 16:57:52'),
+(43, 'me esperaba un sabor mas intenso, demasido suave, aún si se disfruta', 4, 27, '2021-11-24 16:58:42'),
+(44, 'un vino para ocasiones especiales, por lo  menos para mi bolsillo', 5, 11, '2021-11-24 16:59:57'),
+(45, 'una delicia', 5, 11, '2021-11-24 17:03:03'),
+(46, 'un excelente regalo', 5, 11, '2021-11-24 17:03:25');
 
 -- --------------------------------------------------------
 
@@ -149,13 +156,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_comentario` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`

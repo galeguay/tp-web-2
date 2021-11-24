@@ -22,7 +22,9 @@
         </div>
     {/foreach}
     </section>
-
+    {if $userRol == 2}
+        <h3>*AL BORRAR UN PRODUCTO, SE ELIMINARÁ EL PRODUCTO Y SUS COMENTARIOS</h5>
+    {/if}
     {if $userRol == 2}
     <section class="agregar">
         <span>Agregar producto</span>

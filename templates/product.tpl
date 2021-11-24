@@ -33,6 +33,7 @@
                             <option value="1">1</option>
                         </select>
                         <input type="submit" class="btnEditar" value="Filtrar">
+                        <a id="btnNotFilter" class="btnBorrar">Quitar filtro</a>
                     </form>
                 </div>
             </div>

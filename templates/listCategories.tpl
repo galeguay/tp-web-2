@@ -16,6 +16,7 @@
     {/foreach}
     </section>
     {if $userRol == 2}
+        <h3>*SOLO SE PODRÁ ELIMINAR UNA CATEGORÍA SI NO TIENE PRODUCTOS ASOCIADOS</h5>
         <section class="agregar">
         <div class="flexColumna">
             <span>Agregar categoria:</span>
