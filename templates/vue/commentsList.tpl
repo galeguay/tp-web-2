@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <a v-if="userRol == 2" v-on:click="deleteComment(comment.id_comentario)" class="btnBorrar" >Borrar</a>
+        <a v-if="userRol == 2" v-on:click="deleteComment(comment.id_comentario)" class="btnRed" >Borrar</a>
     </div>
 </div>
 {/literal}

@@ -21,7 +21,7 @@
                             <option value="asc" selected>Ascendente</option>
                             <option value="desc">Descendente</option>
                         </select>
-                        <input type="submit" class="btnEditar" value="Ordenar">
+                        <input type="submit" class="btnOrange" value="Ordenar">
                     </form>
                     <form id="formFilter">
                         <label for="estrellas">Estrellas:</label>
@@ -32,8 +32,8 @@
                             <option value="2">2</option>
                             <option value="1">1</option>
                         </select>
-                        <input type="submit" class="btnEditar" value="Filtrar">
-                        <a id="btnNotFilter" class="btnBorrar">Quitar filtro</a>
+                        <input type="submit" class="btnOrange" value="Filtrar">
+                        <a id="btnNotFilter" class="btnRed">Quitar filtro</a>
                     </form>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                         --><input id="radio5" type="radio" name="puntaje" value="1"><!--
                         --><label for="radio5">★</label>
                     </p>
-                    <input type="submit" value="Agregar" class="btnAgregar">
+                    <input type="submit" value="Agregar" class="btnGreen">
                 </div>
             </div>
         </form>

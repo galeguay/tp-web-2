@@ -6,10 +6,10 @@
         <div class="elementoLista">
             {$category->nombre}
             <div>
-                <a href ="category/{$category->id_categoria}" class="btnVerDetalle">VER PRODUCTOS</a>
+                <a href ="category/{$category->id_categoria}" class="btnBlue">VER PRODUCTOS</a>
                 {if $userRol == 2}
-                    <a href="editCategory/{$category->id_categoria}" class="btnEditar">EDITAR</a>
-                    <a href="deleteCategory/{$category->id_categoria}" class="btnBorrar">BORRAR</a>
+                    <a href="editCategory/{$category->id_categoria}" class="btnOrange">EDITAR</a>
+                    <a href="deleteCategory/{$category->id_categoria}" class="btnRed">BORRAR</a>
                 {/if}
             </div>
         </div>
@@ -22,7 +22,7 @@
             <span>Agregar categoria:</span>
             <form action="addCategory" method="POST">
                 <input type="text" name="nombre" placeholder="Nombre">
-                <input type="submit" class="btnAgregar" value="Agregar">
+                <input type="submit" class="btnGreen" value="Agregar">
             </form>
         </div>
         </section>

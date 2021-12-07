@@ -27,9 +27,9 @@
                                     <option value="2" selected>Administrador</option>
                                 {/if}
                         </select>
-                        <input type="submit" value="MODIFICAR" class="btnEditar">
+                        <input type="submit" value="MODIFICAR" class="btnOrange">
                     </form>
-                    <td><a href ="deleteUser/{$user->email}" class="btnBorrar">ELIMINAR</a></td>
+                    <td><a href ="deleteUser/{$user->email}" class="btnRed">ELIMINAR</a></td>
                 </tr>
             {/foreach}
         </tbody>

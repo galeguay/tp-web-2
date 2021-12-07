@@ -10,7 +10,7 @@ class CommentsModel{
     }
 
 
-    function getCommentsFromDB($idProduct, $orderBy, $typeOrderAsc = false, $filter){
+    function getCommentsFromDB($idProduct, $orderBy, $typeOrder, $filter){
         $order_querys = [
             "id" => " ORDER BY id_comentario",
             "fecha" => " ORDER BY fecha_y_hora",
@@ -28,14 +28,10 @@ class CommentsModel{
         }
         if (isset($order_querys[$orderBy])){
             $order_query = $order_querys[$orderBy];
-            if($typeOrderAsc){
+            if($typeOrder == "desc")
                 $order_query .= " ASC";
-            }else{
-                $order_query .= " DESC";
-            }
-        }else{
-            $order_query = "";
-        }
+            else $order_query .= " DESC"; //por defecto
+        }else $order_query = "";
         $sentence = $this->db->prepare("SELECT * FROM comentarios WHERE id_producto=? $filter_query $order_query");
         $sentence->execute(array($idProduct));
         $comments = $sentence->fetchAll(PDO::FETCH_OBJ);

@@ -21,18 +21,18 @@ let app = new Vue({
 });
 
 //OBTIENE LOS COMENTARIOS A TRAVES DE LA API
-async function getComments(idProduct){
-    try {
-        let response = await fetch (ApiURL + "/" + idProduct + orderComments + filter);
-        console.log(ApiURL + "/" + idProduct + orderComments + filter);
-        let comments = await response.json();
-        if (response.ok){
-            app.comments = comments;
+    async function getComments(idProduct){
+        try {
+            let response = await fetch (ApiURL + "/" + idProduct + orderComments + filter);
+            let comments = await response.json();
+            if (response.ok){
+                app.comments = comments;
+            }
+        } catch (e) {
+            console.log(e);
         }
-    } catch (e) {
-        console.log(e);
     }
-}
+
 
 //ELIMINA EL COMENTARIO A TRAVES DE LA API
 async function deleteComment(idComment){
@@ -51,7 +51,7 @@ formOrder.addEventListener("submit", e=>{
     e.preventDefault();
     let data = new FormData(formOrder);
     let newOrder = "?orderBy="+data.get("orderBy");
-    newOrder +="&typeOrder="+data.get("asc");
+    newOrder +="&typeOrder="+data.get("typeOrder");
     orderComments = newOrder;
     getComments(idProduct);
 })
@@ -75,16 +75,19 @@ document.querySelector("#btnNotFilter").addEventListener("click", e=>{
 
 
 //TOMA LOS DATOS CARGADOS EN EL FORMULARIO PARA AGREGAR UN COMENTARIO
-document.querySelector("#formComentario").addEventListener("submit", e =>{
-    e.preventDefault();
-    let dataForm = new FormData(formComments);
-    let comment = {
-        contenido: dataForm.get("contenido"),
-        puntaje: dataForm.get("puntaje"),
-        id_producto: idProduct,
-    }
-    saveComment(comment);
-});
+if (userRol > 0){ //Si no es un usuario registrado en el tpl no estaría el formulario
+    let formComments = document.querySelector("#formComentario");
+    document.querySelector("#formComentario").addEventListener("submit", e =>{
+        e.preventDefault();
+        let dataForm = new FormData(formComments);
+        let comment = {
+            contenido: dataForm.get("contenido"),
+            puntaje: dataForm.get("puntaje"),
+            id_producto: idProduct,
+        }
+        saveComment(comment);
+    });
+}
 
 //GUARDA A TRAVES DE LA API EL COMENTARIO PASADO POR PARAMETRO
 async function saveComment(comment){

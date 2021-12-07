@@ -6,7 +6,7 @@
         <input type="text" name="nombre" placeholder="Nombre">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="pass" placeholder="Contraseña">
-        <input type="submit" value="Registrarse" class="btnRegistrarse">
+        <input type="submit" value="Registrarse" class="btnGreen">
     </div>
 </form>
 

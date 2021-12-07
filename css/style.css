@@ -2,7 +2,7 @@ body, input, textarea{
     font-family: 'Staatliches', cursiva;
 }
 
-body{
+body, .btnLarge{
     font-size: larger;
 }
 
@@ -12,9 +12,37 @@ h1 {
 }
 h3{
     margin: 10px;
+    color: red;
+}
+
+section{
+    margin: 10px;
+    width: 90%;
 }
 
 
+
+
+.btnRed, .btnOrange, .btnGreen, .btnBlue{
+    cursor: pointer;
+    color: white;
+    font-size: large;
+    padding: 2px 5px 2px 5px;
+    text-align: center;
+    display: inline-block;
+}
+.btnRed {
+    background-color: rgb(187, 47, 47);
+}
+.btnOrange {
+    background-color: rgb(245, 114, 67);
+}
+.btnGreen{
+    background-color: green;
+}
+.btnBlue{
+    background-color: rgb(74, 74, 138);
+}
 
 
 /*LOGIN */
@@ -51,10 +79,7 @@ h3{
     align-items: center;
 }
 
-section{
-    margin: 10px;
-    width: 90%;
-}
+
 
 input[type=submit]{
     border: none
@@ -79,27 +104,6 @@ textarea.comentario{
 }
 textarea{
     resize: none;
-}
-
-.btnBorrar, .btnEditar, .btnAgregar, .btnVerDetalle, .btnIniciarSesion, .btnRegistrarse {
-    cursor: pointer;
-    color: white;
-    padding: 2px 5px 2px 5px;
-    text-align: center;
-    display: inline-block;
-}
-.btnBorrar {
-    background-color: rgb(187, 47, 47);
-}
-.btnEditar {
-    background-color: rgb(245, 114, 67);
-}
-.btnAgregar, .btnRegistrarse {
-    background-color: green;
-    font-size: larger;
-}
-.btnVerDetalle, .btnIniciarSesion {
-    background-color: rgb(74, 74, 138);
 }
 
 
@@ -156,7 +160,7 @@ nav{
 nav a{
     padding: 10px;
 }
-nav a.admin, h3{
+nav a.admin{
     color: darkgreen;
 }
 nav span.resaltado{
@@ -206,6 +210,7 @@ div.datosProducto{
     padding-left: 4px;
     overflow: unset;
 }
+
 section.agregar{
     width: 70%;
     border: 1px solid black;
@@ -218,9 +223,10 @@ section.agregar span{
     color: white;
     text-align: center;
     width: 100%;
-    background-color: #685866;
+    background-color: rgb(88, 88, 88);
     margin-bottom: 5px;
 }
+
 .botoneraAdmin{
     display: flex;
     justify-content: center;
@@ -339,7 +345,4 @@ span.estrella{
     display: flex;
     font-size: medium;
     color:#685866;
-}
-a.btnEditar, a.btnBorrar{
-    font-size: large;
 }

@@ -22,10 +22,9 @@ class CommentsApiController extends ApiController{
             $orderBy = $_GET["orderBy"];
         }
         if (isset($_GET["typeOrder"]) && !empty($_GET["typeOrder"])){ //chequea si se estableció si es ascendente o descendente el orden
-            if ($_GET["typeOrder"] == "asc")
-                $typeOrderAsc = true;
+            $typeOrder = $_GET["typeOrder"];
         }
-        $comments = $this->model->getCommentsFromDB($idProduct, $orderBy, $typeOrderAsc, $filtroEstrellas);
+        $comments = $this->model->getCommentsFromDB($idProduct, $orderBy, $typeOrder, $filtroEstrellas);
         $this->view->response($comments, 200);
     }
 
